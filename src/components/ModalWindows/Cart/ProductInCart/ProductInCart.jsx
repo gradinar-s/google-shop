@@ -1,7 +1,7 @@
 import style from "./ProductInCart.module.css";
-// import styleCheckoutBtn from "../Сheckout/Сheckout.module.css";
 
 import React, { useEffect } from "react";
+import Checkout from "../Сheckout/Сheckout";
 
 import { connect } from "react-redux";
 import {
@@ -11,8 +11,6 @@ import {
   setTotalCostAC,
 } from "../../../../redux/cardProductReducer";
 
-import Checkout from "../Сheckout/Сheckout";
-
 const ProductInCart = (props) => {
   useEffect(() => {
     props.setTotalCostAC();
@@ -20,7 +18,6 @@ const ProductInCart = (props) => {
 
   const incrementGoods = (id) => {
     props.incrementGoodsAC(id);
-    // props.setTotalCostAC(id);
   };
   const decrementGoods = (id, counter) => {
     if (counter <= 1) props.removeFromCartAC(id);
@@ -77,7 +74,6 @@ const mapStateToProps = (state) => {
   return {
     cart: state.cardProduct.cart,
     sum: state.cardProduct.sum,
-    // totalCost: state.cardProduct.totalCost,
   };
 };
 export default connect(mapStateToProps, {

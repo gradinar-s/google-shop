@@ -48,13 +48,8 @@ export const cardProductReducer = (state = initialState, action) => {
     }
     case REMOVE_FROM_CART: {
       const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
-
-      // Удаляет всё из массива, кроме элемента на который я нажал
-      // const newStateCart = [...state.cart.splice(currentGoodsId, 1)];
-      // Я говорю => Добавь в массив newStateCart то что удаляешь... Массив перезатирается, и там остаётся только 1 элемент (удалённый)
-
-      let newStateCart = [...state.cart]; // В переменную newStateCart делаю копию массива cart
-      newStateCart.splice(currentGoodsId, 1); // Удаляю из нового массива элемент начиная с индекса который определяю в currentGoodsId, 1 элемент
+      let newStateCart = [...state.cart];
+      newStateCart.splice(currentGoodsId, 1);
       return {
         ...state,
         cart: [...newStateCart],

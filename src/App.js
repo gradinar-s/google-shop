@@ -25,10 +25,5 @@ const App = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    // products: state.cardProduct.products,
-    // cart: state.cardProduct.cart,
-  };
-};
-export default connect(mapStateToProps, { getProductCardDataTC, setProductToCartAC })(App);
+
+export default connect(null, { getProductCardDataTC, setProductToCartAC })(App);
