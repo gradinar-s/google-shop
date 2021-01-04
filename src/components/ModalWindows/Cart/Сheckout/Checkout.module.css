@@ -1,0 +1,18 @@
+.formCheckout{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 0px 0px;
+}
+.formCheckout [type='text'],[ type='email'],[ type='tel']{
+    width: 350px;
+    height: 40px;
+    margin: 5px 0px;
+    padding: 0px 15px;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 1px;
+    background-color: #fff;
+}
+.btnSubmitForm{
+    margin: 5px 0px 0px 0px;
+}

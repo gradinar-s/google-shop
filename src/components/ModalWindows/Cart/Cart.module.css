@@ -1,0 +1,36 @@
+.header__title_cart{
+    position: relative;
+    display: inline-block;
+    margin: 15px 15px 10px 0px;
+}
+.openPopupBtn{
+    cursor: pointer;
+}
+.quan{
+    position: absolute;
+    text-align: center;
+    top: -7px;
+    right: -12px;
+    color: #eee;
+    width: 25px;
+    height: 25px;
+    font-size: 15px;
+    line-height: 1.8;
+    background-color: rgb(204, 74, 22);
+    border-radius: 50%;
+}
+.backToShop{
+    display: block;
+    font-size: 20px;
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 0px 20px;
+    text-decoration: underline;
+    cursor: pointer;
+    background: url('../../../img/icon/back.svg') 30px 50% / 20px 20px no-repeat;
+    transition: 0.3s;
+
+}
+.backToShop:hover{
+   background: url('../../../img/icon/back.svg') 30px 50% / 22px 22px no-repeat;
+   transition: 0.3s;
+}
