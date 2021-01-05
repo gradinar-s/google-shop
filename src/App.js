@@ -10,7 +10,7 @@ import CardProduct from "./components/CardProduct/CardProduct";
 const App = (props) => {
   useEffect(() => {
     props.getProductCardDataTC();
-  }, [props]);
+  }, []);
 
   return (
     <div className="wrapper-app">

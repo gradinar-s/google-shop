@@ -5,7 +5,6 @@ const SET_PRODUCT_TO_CART = "cardProduct/SET_PRODUCT_TO_CART";
 const INCREMENT_GOODS = "cardProduct/INCREMENT_GOODS";
 const DECREMENT_GOODS = "cartProduct/DECREMENT_GOODS";
 const REMOVE_FROM_CART = "cartProduct/REMOVE_FROM_CART";
-const SET_TOTAL_COST = "cartProduct/SET_TOTAL_COST";
 
 const initialState = {
   products: [],
@@ -26,53 +25,39 @@ export const cardProductReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [...state.cart, action.product],
+        sum: state.sum + action.product.cost,
       };
     }
     case INCREMENT_GOODS: {
       const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
       const newStateCart = [...state.cart];
       newStateCart[currentGoodsId].counter++;
-
-      newStateCart[currentGoodsId].totalCostOfGoods =
-        newStateCart[currentGoodsId].cost * newStateCart[currentGoodsId].counter;
       return {
         ...state,
         cart: [...newStateCart],
+        sum: state.sum + state.cart[currentGoodsId].cost,
       };
     }
     case DECREMENT_GOODS: {
       const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
       const newStateCart = [...state.cart];
       newStateCart[currentGoodsId].counter--;
-
-      newStateCart[currentGoodsId].totalCostOfGoods =
-        newStateCart[currentGoodsId].totalCostOfGoods - newStateCart[currentGoodsId].cost;
       return {
         ...state,
         cart: [...newStateCart],
+        sum: state.sum - state.cart[currentGoodsId].cost,
       };
     }
     case REMOVE_FROM_CART: {
       const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
       let newStateCart = [...state.cart];
+      const summa = newStateCart[currentGoodsId].cost * newStateCart[currentGoodsId].counter;
+      newStateCart[currentGoodsId].counter = 1;
       newStateCart.splice(currentGoodsId, 1);
       return {
         ...state,
         cart: [...newStateCart],
-      };
-    }
-    case SET_TOTAL_COST: {
-      // totalCostOfGoods '123'  | totalGoods [123, 123,]
-      
-      const totalCost = state.cart.map((item) => item.cost * item.counter);
-      const sum = totalCost.length
-        ? totalCost.reduce((result, num) => result + num)
-        : state.cart.map((item) => item.totalCostOfGoods);
-      return {
-        ...state,
-        cart: [...state.cart],
-        totalCost: [...totalCost],
-        sum: sum,
+        sum: state.sum - summa,
       };
     }
     default: {
@@ -101,17 +86,13 @@ export const removeFromCartAC = (id) => ({
   type: REMOVE_FROM_CART,
   id,
 });
-export const setTotalCostAC = () => ({
-  type: SET_TOTAL_COST,
-});
 
 export const getProductCardDataTC = () => async (dispatch) => {
   const response = await getProduct;
   const data = response.feed.entry.map((item) => {
     return {
       id: item.gsx$id.$t,
-      cost: item.gsx$cost.$t,
-      totalCostOfGoods: item.gsx$cost.$t,
+      cost: Number(item.gsx$cost.$t),
       img: item.gsx$image.$t,
       name: item.gsx$name.$t,
       counter: 1,

@@ -1,6 +1,6 @@
 import style from "./ProductInCart.module.css";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Checkout from "../Сheckout/Сheckout";
 
 import { connect } from "react-redux";
@@ -8,17 +8,9 @@ import {
   incrementGoodsAC,
   decrementGoodsAC,
   removeFromCartAC,
-  setTotalCostAC,
 } from "../../../../redux/cardProductReducer";
 
-const ProductInCart = ({
-  cart,
-  decrementGoodsAC,
-  incrementGoodsAC,
-  removeFromCartAC,
-  setTotalCostAC,
-  sum,
-}) => {
+const ProductInCart = ({ cart, decrementGoodsAC, incrementGoodsAC, removeFromCartAC, sum }) => {
   const incrementGoods = (id) => {
     incrementGoodsAC(id);
   };
@@ -26,6 +18,7 @@ const ProductInCart = ({
     if (counter <= 1) removeFromCartAC(id);
     else decrementGoodsAC(id);
   };
+
   return (
     <>
       {cart.map((item) => (
@@ -44,7 +37,7 @@ const ProductInCart = ({
           <div className={style.quantityGoods}>
             <div className={style.quantityTitle}>
               <span>Quantity:</span>
-              {`${item.counter}pc | ${item.totalCostOfGoods} UAH`}
+              {`${item.counter}pc | ${item.cost * item.counter} UAH`}
               <div className={style.buttons}>
                 <button
                   onClick={() => incrementGoods(item.id)}
@@ -84,5 +77,4 @@ export default connect(mapStateToProps, {
   incrementGoodsAC,
   decrementGoodsAC,
   removeFromCartAC,
-  setTotalCostAC,
 })(ProductInCart);
