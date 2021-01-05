@@ -6,6 +6,12 @@
     font-weight: 700;
     margin: 30px 0px 10px 0px;
 }
+.info img{
+    object-fit: cover;
+}
+.nameGoods{
+    width: 100%;
+}
 .smallProductIcons{
     width: 40px;
     height: 40px;
@@ -26,7 +32,7 @@
    transition: 0.3s;
 }
 
-.quantityTitlte span{
+.quantityTitle span{
     font-weight: 700;
     margin: 0px 10px 0px 0px;
 }
@@ -51,4 +57,29 @@
 }
 .totalCost span{
     text-decoration: underline;
+}
+
+@media(max-width: 424px){
+    .info{
+        margin: 10px 0px 0px 0px;
+    }
+    .nameGoods{
+        font-size: 16px;
+    }
+    .btnCartManagement{
+        display: flex;
+        flex-direction: column;
+    }
+    .btnDelGoodsTheCart{
+        margin: 5px 0px 0px 0px;
+    }
+    .quantityGoods{
+        margin: 0px 0px 0px 0px;
+    }
+    .buttons{
+        display: block;
+        margin: 10px 0px 0px 0px;
+          
+    }
+    
 }

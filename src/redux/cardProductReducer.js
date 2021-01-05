@@ -32,6 +32,9 @@ export const cardProductReducer = (state = initialState, action) => {
       const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
       const newStateCart = [...state.cart];
       newStateCart[currentGoodsId].counter++;
+
+      newStateCart[currentGoodsId].totalCostOfGoods =
+        newStateCart[currentGoodsId].cost * newStateCart[currentGoodsId].counter;
       return {
         ...state,
         cart: [...newStateCart],
@@ -41,6 +44,9 @@ export const cardProductReducer = (state = initialState, action) => {
       const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
       const newStateCart = [...state.cart];
       newStateCart[currentGoodsId].counter--;
+
+      newStateCart[currentGoodsId].totalCostOfGoods =
+        newStateCart[currentGoodsId].totalCostOfGoods - newStateCart[currentGoodsId].cost;
       return {
         ...state,
         cart: [...newStateCart],
@@ -56,12 +62,15 @@ export const cardProductReducer = (state = initialState, action) => {
       };
     }
     case SET_TOTAL_COST: {
-      const newStateCart = [...state.cart];
-      const totalCost = newStateCart.map((item) => item.cost * item.counter);
-      const sum = totalCost.length ? totalCost.reduce((result, num) => result + num) : 0;
+      // totalCostOfGoods '123'  | totalGoods [123, 123,]
+      
+      const totalCost = state.cart.map((item) => item.cost * item.counter);
+      const sum = totalCost.length
+        ? totalCost.reduce((result, num) => result + num)
+        : state.cart.map((item) => item.totalCostOfGoods);
       return {
         ...state,
-        cart: [...newStateCart],
+        cart: [...state.cart],
         totalCost: [...totalCost],
         sum: sum,
       };
@@ -92,9 +101,8 @@ export const removeFromCartAC = (id) => ({
   type: REMOVE_FROM_CART,
   id,
 });
-export const setTotalCostAC = (id) => ({
+export const setTotalCostAC = () => ({
   type: SET_TOTAL_COST,
-  id,
 });
 
 export const getProductCardDataTC = () => async (dispatch) => {
@@ -103,6 +111,7 @@ export const getProductCardDataTC = () => async (dispatch) => {
     return {
       id: item.gsx$id.$t,
       cost: item.gsx$cost.$t,
+      totalCostOfGoods: item.gsx$cost.$t,
       img: item.gsx$image.$t,
       name: item.gsx$name.$t,
       counter: 1,

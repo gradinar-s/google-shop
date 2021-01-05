@@ -49,7 +49,7 @@ const Cart = (props) => {
                 )}
               </div>
               <div className={stylePopup.popup__text}>
-                <ProductInCart arrayHelper={props.arrayHelper} />
+                <ProductInCart />
               </div>
             </div>
           </div>

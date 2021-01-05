@@ -22,7 +22,6 @@
     max-width: 800px;
     padding: 20px;
     position: relative;
-    /* transform: translate(0px, -100%); */
 }
 .popup__close {
     position: absolute;
@@ -48,5 +47,13 @@
 @media (max-width: 767px){
     .popup__content{
         max-width: 500px;
+    }
+}
+@media(max-width: 424px){
+    .popup__title{
+        margin: 10px 0px 0px 0px;
+    }
+    .popup__content{
+        padding: 15px;
     }
 }

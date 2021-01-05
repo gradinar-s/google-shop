@@ -1,12 +1,15 @@
 import style from "./CardProduct.module.css";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { setProductToCartAC } from "../../redux/cardProductReducer";
+import { setProductToCartAC, setTotalCostAC } from "../../redux/cardProductReducer";
 import Checkout from "../ModalWindows/Cart/Сheckout/Сheckout";
 
 const CardProduct = (props) => {
+  useEffect(() => {
+    props.setTotalCostAC();
+  }, []);
   const addToCart = (card) => {
     if (!props.cart.length) {
       props.setProductToCartAC(card);
@@ -44,4 +47,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setProductToCartAC })(CardProduct);
+export default connect(mapStateToProps, { setProductToCartAC, setTotalCostAC })(CardProduct);

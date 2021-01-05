@@ -20,6 +20,11 @@ ul{padding: 0;}
 }
 .buttonPrimary:hover { background: #333; color: #fff; }
 .buttonPrimary:active { background: #fff; }
+@media(max-width: 424px){
+    .buttonPrimary{
+        height: 35px;
+    }
+}
 /*  */
 .container {
     max-width: 1440px;

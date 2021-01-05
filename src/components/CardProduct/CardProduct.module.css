@@ -15,9 +15,9 @@
 .photoProduct{
     position: relative;
     width: 100%;
-    padding-top: 133%;
+    padding-top: 150%;
     overflow: hidden;
-    
+    margin: 0px 0px 10px 0px;
 }
 .photoProduct img{
     position: absolute;
@@ -29,18 +29,19 @@
     width: auto;
 }
 .title{
-    font-size: 16px;
-    font-weight: 600;
-    margin: 10px 0px 0px 0px;
+    font-size: 15px;
+    font-weight: 550;
+    margin: 0px 0px 10px 0px;
+    flex: 1 1 auto;
 }
 .price{
     font-size: 18px;
     font-weight: 600;
-    margin: 10px 0px 0px 0px;
+    margin: 0px 0px 10px 0px;
 }
 .buttons{
     width: 100%;
-    margin: 10px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     display: flex;
 }
 .addCard{
@@ -51,4 +52,23 @@
 .addCard:hover{
     background: url('../../img/icon/cart-white.svg') 50% 50% / 20px 20px no-repeat;
     background-color: #333;
+}
+
+@media(max-width: 767px){
+    .item{
+        flex: 0 0 30%;
+    }
+}
+
+@media(max-width: 424px){
+    .item{
+        flex: 0 0 70%;
+    }
+    .photoProduct{
+        position: relative;
+        width: 100%;
+        padding-top: 135%;
+        overflow: hidden;
+        margin: 0px 0px 10px 0px;
+}
 }
