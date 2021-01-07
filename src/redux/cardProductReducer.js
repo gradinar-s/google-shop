@@ -95,6 +95,9 @@ export const getProductCardDataTC = () => async (dispatch) => {
       cost: Number(item.gsx$cost.$t),
       img: item.gsx$image.$t,
       name: item.gsx$name.$t,
+      description: item.gsx$description.$t,
+      quantity: Number(item.gsx$quantity.$t),
+      size: item.gsx$size.$t.split(","),
       counter: 1,
     };
   });

@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 
 import { setProductToCartAC } from "../../redux/cardProductReducer";
 import Checkout from "../ModalWindows/Cart/Сheckout/Сheckout";
+import { NavLink } from "react-router-dom";
+import { compose } from "redux";
+import Loading from "../Loading/Loading";
 
 const CardProduct = (props) => {
   const addToCart = (card) => {
@@ -22,9 +25,9 @@ const CardProduct = (props) => {
     <div className={style.cardProduct}>
       {props.products.map((item) => (
         <div key={item.id} className={style.item}>
-          <div className={style.photoProduct}>
+          <NavLink to={`/goods/${item.id}`} className={style.photoProduct}>
             <img src={item.img} alt="" />
-          </div>
+          </NavLink>
           <div className={style.title}>{item.name}</div>
           <div className={style.price}>{item.cost} UAH</div>
           <div className={style.buttons}>
@@ -44,4 +47,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setProductToCartAC })(CardProduct);
+export default compose(connect(mapStateToProps, { setProductToCartAC }))(CardProduct);

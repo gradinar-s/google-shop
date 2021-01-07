@@ -2,6 +2,7 @@
 ::selection{background-color: #333; color: #eee;}
 body{font-family: Arial, Helvetica, sans-serif; cursor: default;}
 ul{padding: 0;}
+p{margin: 0;}
 
 /* BUTTON */
 .buttonPrimary{
@@ -25,6 +26,8 @@ ul{padding: 0;}
         height: 35px;
     }
 }
+/* TITLE */
+
 /*  */
 .container {
     max-width: 1440px;
