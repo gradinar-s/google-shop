@@ -1,4 +1,4 @@
-import style from "./ProductPage.module.css";
+import style from "./ProductPage.module.scss";
 
 import React from "react";
 import { connect } from "react-redux";
@@ -12,7 +12,7 @@ const ProductPage = (props) => {
   const id = props.match.params.id;
   const goods = props.products[id];
   return (
-    <div>
+    <>
       {!props.products.length ? (
         <Loading />
       ) : (
@@ -23,42 +23,40 @@ const ProductPage = (props) => {
             </div>
           </div>
           <div className={style.orderSelection}>
-            <div className={style.orderSelectionWrapper}>
-              <div className={style.title}>{goods.name}</div>
-              <div className={style.availability}>
-                {goods.quantity >= 10 && (
-                  <span className={`${style.areAvailable}`}>Are available</span>
-                )}
-                {goods.quantity < 10 && goods.quantity !== 0 && (
-                  <span className={`${style.last}`}>The item is running out</span>
-                )}
-                {goods.quantity === 0 && (
-                  <span className={`${style.notAvailable}`}>Not available</span>
-                )}
-              </div>
-              <div className={style.cost}>{goods.cost} UAH</div>
-              <div className={style.descriptionGoods}>
-                <hr />
-                <p>{goods.description}</p>
-              </div>
-              <div className={style.sizeSelection}>
-                <hr />
-                {goods.size.map((item) => (
-                  <div key={item} onClick={() => console.log(item)} className={style.sizeGoods}>
-                    {item}
-                  </div>
-                ))}
-                <hr />
-              </div>
-              <div className={style.buttons}>
-                <button className={`buttonPrimary`}>Buy</button>
-                <button className={`buttonPrimary ${style.addToCart}`}>Add to cart</button>
-              </div>
+            <div className={style.title}>{goods.name}</div>
+            <div className={style.availability}>
+              {goods.quantity >= 10 && (
+                <span className={`${style.areAvailable}`}>Are available</span>
+              )}
+              {goods.quantity < 10 && goods.quantity !== 0 && (
+                <span className={`${style.last}`}>The item is running out</span>
+              )}
+              {goods.quantity === 0 && (
+                <span className={`${style.notAvailable}`}>Not available</span>
+              )}
+            </div>
+            <div className={style.cost}>{goods.cost} UAH</div>
+            <div className={style.descriptionGoods}>
+              <hr />
+              <p>{goods.description}</p>
+            </div>
+            <div className={style.sizeSelection}>
+              <hr />
+              {goods.size.map((item) => (
+                <div key={item} onClick={() => console.log(item)} className={style.sizeGoods}>
+                  {item}
+                </div>
+              ))}
+              <hr />
+            </div>
+            <div className={style.buttons}>
+              <button className={`buttonPrimary`}>Buy</button>
+              <button className={`buttonPrimary ${style.addToCart}`}>Add to cart</button>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 const mapStateToProps = (state) => {

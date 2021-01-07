@@ -7,7 +7,6 @@ import { setProductToCartAC } from "../../redux/cardProductReducer";
 import Checkout from "../ModalWindows/Cart/Сheckout/Сheckout";
 import { NavLink } from "react-router-dom";
 import { compose } from "redux";
-import Loading from "../Loading/Loading";
 
 const CardProduct = (props) => {
   const addToCart = (card) => {
