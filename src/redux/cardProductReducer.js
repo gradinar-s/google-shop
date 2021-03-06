@@ -1,4 +1,5 @@
 import { getProduct } from "../api/api";
+// import { put, takeEvery } from "redux-saga/effects";
 
 const SET_PRODUCT_CARD_DATA = "cardProduct/SET_PRODUCT_CARD_DATA";
 const SET_PRODUCT_TO_CART = "cardProduct/SET_PRODUCT_TO_CART";
@@ -103,3 +104,22 @@ export const getProductCardDataTC = () => async (dispatch) => {
   });
   dispatch(setProductCardDataAC(data));
 };
+
+// export function* sagaWatcher() {
+//   yield takeEvery(SET_PRODUCT_CARD_DATA, function* sagaWorker() {
+//     const response = yield getProduct;
+//     const data = yield response.feed.entry.map((item) => {
+//       return {
+//         id: item.gsx$id.$t,
+//         cost: Number(item.gsx$cost.$t),
+//         img: item.gsx$image.$t,
+//         name: item.gsx$name.$t,
+//         description: item.gsx$description.$t,
+//         quantity: Number(item.gsx$quantity.$t),
+//         size: item.gsx$size.$t.split(","),
+//         counter: 1,
+//       };
+//     });
+//     yield put(setProductCardDataAC(data)); // dispatch(actionCreator)
+//   });
+// }
