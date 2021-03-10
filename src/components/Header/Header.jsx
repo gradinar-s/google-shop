@@ -1,7 +1,9 @@
 import React from "react";
 import style from "./Header.module.css";
-import Cart from "../ModalWindows/Cart/Cart";
+import Cart from "../Cart/Cart";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import Notification from "../Common/Notification/Notification";
 
 const Header = (props) => {
   return (
@@ -13,13 +15,26 @@ const Header = (props) => {
       </div>
       <div className={style.nav}>
         <div className={style.rowNav}>
-          <hr />
           <Cart />
-          <hr />
+          {props.isAlreadyInCart && (
+            <Notification
+              className={style.alreadyNotification}
+              direction="left"
+            >
+              <span className={style.message}>
+                This goods is already in your cart
+              </span>
+            </Notification>
+          )}
         </div>
       </div>
     </header>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    isAlreadyInCart: state.cardProduct.isAlreadyInCart,
+  };
+};
+export default connect(mapStateToProps, null)(Header);

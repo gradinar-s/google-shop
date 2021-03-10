@@ -1,0 +1,84 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 30px 0px 10px 0px;
+}
+.info img {
+  object-fit: cover;
+}
+.nameGoods {
+  width: 100%;
+}
+.smallProductIcons {
+  width: 40px;
+  height: 40px;
+  margin: 0px 10px 0px 0px;
+}
+.btnCartManagement {
+  margin: 0px 0px 0px 10px;
+  display: flex;
+}
+.btnDelGoodsTheCart {
+  width: 50px;
+  margin: 0px 0px 0px 5px;
+  background: url("../../../img/icon/delete.svg") 50% 50% / 20px 20px no-repeat;
+  transition: 0.3s;
+}
+.btnDelGoodsTheCart:hover {
+  background: url("../../../img/icon/delete-white.svg") 50% 50% / 20px 20px
+    no-repeat;
+  transition: 0.3s;
+}
+
+.quantityTitle span {
+  font-weight: 700;
+  margin: 0px 10px 0px 0px;
+}
+.quantityGoods {
+  position: relative;
+  margin: 15px 0px 0px 0px;
+}
+.buttons {
+  display: inline-block;
+  margin: 0px 0px 0px 15px;
+}
+.buttons button {
+  width: 50px;
+  height: 30px;
+  margin: 0px 5px 0px 0px;
+}
+.totalCost {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 10px 0px 0px 0px;
+  text-align: right;
+}
+.totalCost span {
+  text-decoration: underline;
+}
+
+@media (max-width: 424px) {
+  .info {
+    margin: 10px 0px 0px 0px;
+  }
+  .nameGoods {
+    font-size: 16px;
+  }
+  .btnCartManagement {
+    display: flex;
+    flex-direction: column;
+  }
+  .btnDelGoodsTheCart {
+    margin: 5px 0px 0px 0px;
+  }
+  .quantityGoods {
+    margin: 0px 0px 0px 0px;
+  }
+  .buttons {
+    display: block;
+    margin: 10px 0px 0px 0px;
+  }
+}

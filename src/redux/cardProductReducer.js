@@ -1,11 +1,11 @@
 import { getProduct } from "../api/api";
-// import { put, takeEvery } from "redux-saga/effects";
 
 const SET_PRODUCT_CARD_DATA = "cardProduct/SET_PRODUCT_CARD_DATA";
 const SET_PRODUCT_TO_CART = "cardProduct/SET_PRODUCT_TO_CART";
 const INCREMENT_GOODS = "cardProduct/INCREMENT_GOODS";
 const DECREMENT_GOODS = "cartProduct/DECREMENT_GOODS";
 const REMOVE_FROM_CART = "cartProduct/REMOVE_FROM_CART";
+const SET_ALREADY_IN_CART = "cartProduct/SET_ALREADY_IN_CART";
 
 const initialState = {
   products: [],
@@ -13,6 +13,7 @@ const initialState = {
   totalCost: [],
   sum: 0,
   isLoaded: false,
+  isAlreadyInCart: false,
 };
 export const cardProductReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -30,7 +31,9 @@ export const cardProductReducer = (state = initialState, action) => {
       };
     }
     case INCREMENT_GOODS: {
-      const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
+      const currentGoodsId = state.cart.findIndex(
+        (item) => item.id === action.id
+      );
       const newStateCart = [...state.cart];
       newStateCart[currentGoodsId].counter++;
       return {
@@ -40,7 +43,9 @@ export const cardProductReducer = (state = initialState, action) => {
       };
     }
     case DECREMENT_GOODS: {
-      const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
+      const currentGoodsId = state.cart.findIndex(
+        (item) => item.id === action.id
+      );
       const newStateCart = [...state.cart];
       newStateCart[currentGoodsId].counter--;
       return {
@@ -50,15 +55,26 @@ export const cardProductReducer = (state = initialState, action) => {
       };
     }
     case REMOVE_FROM_CART: {
-      const currentGoodsId = state.cart.findIndex((item) => item.id === action.id);
+      const currentGoodsId = state.cart.findIndex(
+        (item) => item.id === action.id
+      );
       let newStateCart = [...state.cart];
-      const summa = newStateCart[currentGoodsId].cost * newStateCart[currentGoodsId].counter;
+      const summa =
+        newStateCart[currentGoodsId].cost *
+        newStateCart[currentGoodsId].counter;
       newStateCart[currentGoodsId].counter = 1;
       newStateCart.splice(currentGoodsId, 1);
       return {
         ...state,
         cart: [...newStateCart],
         sum: state.sum - summa,
+        isAlreadyInCart: false,
+      };
+    }
+    case SET_ALREADY_IN_CART: {
+      return {
+        ...state,
+        isAlreadyInCart: action.data,
       };
     }
     default: {
@@ -87,6 +103,10 @@ export const removeFromCartAC = (id) => ({
   type: REMOVE_FROM_CART,
   id,
 });
+export const setAlreadyInCartAC = (data) => ({
+  type: SET_ALREADY_IN_CART,
+  data,
+});
 
 export const getProductCardDataTC = () => async (dispatch) => {
   const response = await getProduct;
@@ -98,28 +118,9 @@ export const getProductCardDataTC = () => async (dispatch) => {
       name: item.gsx$name.$t,
       description: item.gsx$description.$t,
       quantity: Number(item.gsx$quantity.$t),
-      size: item.gsx$size.$t.split(","),
+      availableSizes: item.gsx$size.$t.split(", "),
       counter: 1,
     };
   });
   dispatch(setProductCardDataAC(data));
 };
-
-// export function* sagaWatcher() {
-//   yield takeEvery(SET_PRODUCT_CARD_DATA, function* sagaWorker() {
-//     const response = yield getProduct;
-//     const data = yield response.feed.entry.map((item) => {
-//       return {
-//         id: item.gsx$id.$t,
-//         cost: Number(item.gsx$cost.$t),
-//         img: item.gsx$image.$t,
-//         name: item.gsx$name.$t,
-//         description: item.gsx$description.$t,
-//         quantity: Number(item.gsx$quantity.$t),
-//         size: item.gsx$size.$t.split(","),
-//         counter: 1,
-//       };
-//     });
-//     yield put(setProductCardDataAC(data)); // dispatch(actionCreator)
-//   });
-// }

@@ -2,11 +2,15 @@ import style from "./CardProduct.module.css";
 
 import React from "react";
 import { connect } from "react-redux";
-
-import { setProductToCartAC } from "../../redux/cardProductReducer";
-import Checkout from "../ModalWindows/Cart/Сheckout/Сheckout";
 import { NavLink } from "react-router-dom";
 import { compose } from "redux";
+
+import {
+  setProductToCartAC,
+  setAlreadyInCartAC,
+} from "../../redux/cardProductReducer";
+import Checkout from "../Сheckout/Сheckout";
+import Notification from "../Common/Notification/Notification";
 
 const CardProduct = (props) => {
   const addToCart = (card) => {
@@ -16,8 +20,15 @@ const CardProduct = (props) => {
       const result = props.cart.some((item) => {
         return card.id === item.id;
       });
-      if (result) console.log("уже есть..");
-      else props.setProductToCartAC(card);
+      if (result) {
+        props.setAlreadyInCartAC(true);
+        // To add a temporary notification
+        setTimeout(() => {
+          props.setAlreadyInCartAC(false);
+        }, 2800);
+      } else {
+        props.setProductToCartAC(card);
+      }
     }
   };
   return (
@@ -27,11 +38,34 @@ const CardProduct = (props) => {
           <NavLink to={`/goods/${item.id}`} className={style.photoProduct}>
             <img src={item.img} alt="" />
           </NavLink>
-          <div className={style.title}>{item.name}</div>
+          <NavLink to={`/goods/${item.id}`} className={style.title}>
+            {item.name}
+          </NavLink>
           <div className={style.price}>{item.cost} UAH</div>
           <div className={style.buttons}>
             <Checkout />
-            <button onClick={() => addToCart(item)} className={`buttonPrimary ${style.addCard}`} />
+            <div className={style.addCartWrapper}>
+              <Notification
+                className={style.selectionSize}
+                direction="bottom"
+                background="#333"
+                borderColor="#333"
+              >
+                {item.availableSizes.map((size, index) => (
+                  <span
+                    key={index}
+                    className={style.size}
+                    onClick={() => console.log(size)}
+                  >
+                    {size}
+                  </span>
+                ))}
+              </Notification>
+              <button
+                onClick={() => addToCart(item)}
+                className={`buttonPrimary ${style.addCart}`}
+              />
+            </div>
           </div>
         </div>
       ))}
@@ -46,4 +80,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default compose(connect(mapStateToProps, { setProductToCartAC }))(CardProduct);
+export default compose(
+  connect(mapStateToProps, { setProductToCartAC, setAlreadyInCartAC })
+)(CardProduct);

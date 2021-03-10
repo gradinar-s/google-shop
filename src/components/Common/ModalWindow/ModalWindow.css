@@ -1,0 +1,60 @@
+/* Animations modal window ==================================================== */
+.modalOverlay {
+  opacity: 1;
+  transition: opacity 0.3s;
+  animation: viewModalOverlay 0.3s forwards;
+}
+.modalBody {
+  animation: viewModalBody 0.3s forwards;
+}
+.modalWindow.hide .modalOverlay {
+  opacity: 0;
+}
+@keyframes viewModalOverlay {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+@keyframes viewModalBody {
+  from {
+    transform: translateY(-150px);
+  }
+  to {
+    transform: translateY(100px);
+  }
+}
+/* ============================================================================ */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modalBody {
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 15px;
+  background-color: #fff;
+}
+/* Header ===================================================================== */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.modalClosed {
+  line-height: 1;
+  cursor: pointer;
+}
+/* Content ==================================================================== */
+.modalContent {
+  margin-top: 15px;
+}
+/* Footer ===================================================================== */
+.modalFooter {
+  /* margin-top: 15px; */
+}

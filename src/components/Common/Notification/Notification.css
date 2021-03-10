@@ -1,0 +1,49 @@
+.notification {
+  display: inline-block;
+  max-width: 270px;
+  color: #fff;
+}
+.notification-wrapper {
+  position: relative;
+}
+.notification .notification-content {
+  padding: 5px;
+  background-color: #cc4a16;
+  border: 1px solid #cc4a16;
+  border-radius: 3px;
+}
+.notification .arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #cc4a16;
+  border: solid #cc4a16;
+  border-width: 0 1px 1px 0;
+}
+
+.notification .arrow.top {
+  top: -5.8px;
+  left: 7px;
+  transform: rotate(225deg);
+  -webkit-transform: rotate(225deg);
+}
+.notification .arrow.bottom {
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.notification .arrow.left {
+  top: 50%;
+  margin-top: -5px;
+  left: -4.5px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.notification .arrow.right {
+  top: 7px;
+  right: -6px;
+  transform: rotate(315deg);
+  -webkit-transform: rotate(315deg);
+}

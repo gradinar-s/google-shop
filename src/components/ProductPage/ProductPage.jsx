@@ -6,11 +6,12 @@ import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 
 import { getProductCardDataTC } from "../../redux/cardProductReducer";
-import Loading from "../Loading/Loading";
+import Loading from "../Common/Loading/Loading";
 
 const ProductPage = (props) => {
   const id = props.match.params.id;
   const goods = props.products[id];
+
   return (
     <>
       {!props.products.length ? (
@@ -42,16 +43,22 @@ const ProductPage = (props) => {
             </div>
             <div className={style.sizeSelection}>
               <hr />
-              {goods.size.map((item) => (
-                <div key={item} onClick={() => console.log(item)} className={style.sizeGoods}>
-                  {item}
+              {goods.availableSizes.map((size) => (
+                <div
+                  key={size}
+                  onClick={() => console.log(size)}
+                  className={style.sizeGoods}
+                >
+                  {size}
                 </div>
               ))}
               <hr />
             </div>
             <div className={style.buttons}>
               <button className={`buttonPrimary`}>Buy</button>
-              <button className={`buttonPrimary ${style.addToCart}`}>Add to cart</button>
+              <button className={`buttonPrimary ${style.addToCart}`}>
+                Add to cart
+              </button>
             </div>
           </div>
         </div>
@@ -64,4 +71,7 @@ const mapStateToProps = (state) => {
     products: state.cardProduct.products,
   };
 };
-export default compose(connect(mapStateToProps, { getProductCardDataTC }), withRouter)(ProductPage);
+export default compose(
+  connect(mapStateToProps, { getProductCardDataTC }),
+  withRouter
+)(ProductPage);
