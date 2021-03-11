@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9a339267.chunk.css",
+    "main.js": "/static/js/main.49a23faf.chunk.js",
+    "main.js.map": "/static/js/main.49a23faf.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4110bfe8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4110bfe8.js.map",
+    "static/js/2.65b844b0.chunk.js": "/static/js/2.65b844b0.chunk.js",
+    "static/js/2.65b844b0.chunk.js.map": "/static/js/2.65b844b0.chunk.js.map",
+    "static/js/3.5e77f7ff.chunk.js": "/static/js/3.5e77f7ff.chunk.js",
+    "static/js/3.5e77f7ff.chunk.js.map": "/static/js/3.5e77f7ff.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.9a339267.chunk.css.map": "/static/css/main.9a339267.chunk.css.map",
+    "static/js/2.65b844b0.chunk.js.LICENSE.txt": "/static/js/2.65b844b0.chunk.js.LICENSE.txt",
+    "static/media/Cart.module.css": "/static/media/back.d8f688ff.svg",
+    "static/media/CardProduct.module.css": "/static/media/cart.ddc068c2.svg",
+    "static/media/ProductPage.module.scss": "/static/media/remove.5ea302e1.svg",
+    "static/media/ProductInCart.module.css": "/static/media/delete.e23797be.svg",
+    "static/media/loading.48060ccb.svg": "/static/media/loading.48060ccb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4110bfe8.js",
+    "static/js/2.65b844b0.chunk.js",
+    "static/css/main.9a339267.chunk.css",
+    "static/js/main.49a23faf.chunk.js"
+  ]
+}
