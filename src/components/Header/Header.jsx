@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import style from "./Header.module.css";
-import Cart from "../Cart/Cart";
+import React, { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+
+import Cart from "../Cart/Cart";
 import Notification from "../Common/Notification/Notification";
-import cart from "../../img/icon/cart.svg";
+
 import {
   openCart,
   closeCart,
@@ -12,7 +12,11 @@ import {
   setCoordinatesIconCart,
 } from "../../redux/appReducer";
 
+import style from "./Header.module.css";
+import cart from "../../img/icon/cart.svg";
+
 const Header = (props) => {
+  // Close modal window
   const closePopup = () => {
     const ANIMATION_TIME = 210;
     props.setWindowClosingProcess(true);
@@ -22,19 +26,15 @@ const Header = (props) => {
     }, ANIMATION_TIME);
   };
 
-  // =======================================================
+  // Get cart coordinates
+  const cartElement = useRef();
 
-  const el = useRef();
-
-  window.addEventListener("load", () => {
-    const coordinations = el.current.getBoundingClientRect();
+  useEffect(() => {
+    const coordinations = cartElement.current.getBoundingClientRect();
     const top = Math.round(coordinations.top);
     const left = Math.round(coordinations.left);
-
-    props.setCoordinatesIconCart({ top: top, left: left });
-  });
-
-  // =======================================================
+    props.setCoordinatesIconCart({ top, left });
+  }, []);
 
   return (
     <header className={style.header}>
@@ -45,11 +45,13 @@ const Header = (props) => {
       </div>
       <div className={style.nav}>
         <div className={style.rowNav}>
-          <div className={style.titleCart} onClick={props.openCart}>
+          <div
+            ref={cartElement}
+            className={style.titleCart}
+            onClick={props.openCart}
+          >
             <img src={cart} alt="" />
-            <span ref={el} className={style.quan}>
-              {props.cart.length}
-            </span>
+            <span className={style.quan}>{props.cart.length}</span>
           </div>
           <Cart cart={props.cart} closePopup={closePopup} />
           {props.isAlreadyInCart && (
@@ -72,6 +74,7 @@ const mapStateToProps = (state) => {
   return {
     isAlreadyInCart: state.cardProduct.isAlreadyInCart,
     cart: state.cardProduct.cart,
+    initializedApp: state.app.initializedApp,
   };
 };
 export default connect(mapStateToProps, {

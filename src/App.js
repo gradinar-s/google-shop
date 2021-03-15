@@ -1,23 +1,24 @@
-import "./App.css";
-
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 
 import {
-  getProductCardDataTC,
   setProductToCartAC,
   setAddProductToCart,
   setAlreadyInCartAC,
 } from "./redux/cardProductReducer";
+import { initializeApp } from "./redux/appReducer";
 
 import Header from "./components/Header/Header";
 import CardProduct from "./components/CardProduct/CardProduct";
 import ProductPage from "./components/ProductPage/ProductPage";
+import Loading from "./components/Common/Loading/Loading";
+
+import "./App.css";
 
 const App = (props) => {
   // Get data on page load
-  useEffect(() => props.getProductCardDataTC(), []);
+  useEffect(() => props.initializeApp(), []);
 
   // Validation of adding items to cart
   const addCartGoodsValidation = (card) => {
@@ -50,6 +51,10 @@ const App = (props) => {
   const CARD_PRODUCT = (
     <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
   );
+
+  if (!props.initializedApp) {
+    return <Loading />;
+  }
   return (
     <div className="wrapper-app">
       <div className="container">
@@ -70,12 +75,13 @@ const App = (props) => {
 };
 const mapStateToProps = (state) => {
   return {
+    initializedApp: state.app.initializedApp,
     cart: state.cardProduct.cart,
   };
 };
 export default connect(mapStateToProps, {
-  getProductCardDataTC,
   setProductToCartAC,
   setAddProductToCart,
   setAlreadyInCartAC,
+  initializeApp,
 })(App);

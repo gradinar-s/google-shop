@@ -20,16 +20,17 @@
 .btnCartManagement {
   margin: 0px 0px 0px 10px;
   display: flex;
+  width: 60px;
+  transition: 0.3s;
+}
+.btnCartManagement:hover .btnDelGoodsTheCart {
+  background: url("../../../img/icon/delete-white.svg") 50% / 20px no-repeat;
+  transition: 0.3s;
 }
 .btnDelGoodsTheCart {
   width: 50px;
   margin: 0px 0px 0px 5px;
-  background: url("../../../img/icon/delete.svg") 50% 50% / 20px 20px no-repeat;
-  transition: 0.3s;
-}
-.btnDelGoodsTheCart:hover {
-  background: url("../../../img/icon/delete-white.svg") 50% 50% / 20px 20px
-    no-repeat;
+  background: url("../../../img/icon/delete.svg") 50% / 20px no-repeat;
   transition: 0.3s;
 }
 

@@ -9,7 +9,6 @@ import {
   decrementGoodsAC,
   removeFromCartAC,
 } from "../../../redux/cardProductReducer";
-import styled from "styled-components";
 
 const ProductInCart = ({
   cart,
@@ -33,7 +32,6 @@ const ProductInCart = ({
           <div className={style.info}>
             <img className={style.smallProductIcons} src={item.img} alt="" />
             <span className={style.nameGoods}>{item.name}</span>
-            {/* <span className={style.size}>s, m, l</span> */}
             <span className={style.btnCartManagement}>
               <Checkout />
               <button

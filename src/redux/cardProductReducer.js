@@ -1,14 +1,15 @@
 import { getProduct } from "../api/api";
 
+// set data goods to state app
 const SET_PRODUCT_CARD_DATA = "cardProduct/SET_PRODUCT_CARD_DATA";
-
+// set goods to cart
 const SET_PRODUCT_TO_CART = "cardProduct/SET_PRODUCT_TO_CART";
 const SET_ADD_PRODUCT_TO_CART = "cartProduct/SET_ADD_PRODUCT_TO_CART";
-
+// math
 const INCREMENT_GOODS = "cardProduct/INCREMENT_GOODS";
 const DECREMENT_GOODS = "cartProduct/DECREMENT_GOODS";
 const REMOVE_FROM_CART = "cartProduct/REMOVE_FROM_CART";
-
+// product already in cart (for styling)
 const SET_ALREADY_IN_CART = "cartProduct/SET_ALREADY_IN_CART";
 
 const initialState = {
@@ -16,20 +17,18 @@ const initialState = {
   cart: [],
   totalCost: [],
   sum: 0,
-  isLoaded: false,
   isAlreadyInCart: false,
-  //
   isAddProduct: false,
+  // page loading (render preloader)
+  isLoaded: false,
 };
 export const cardProductReducer = (state = initialState, action) => {
   switch (action.type) {
+    // set data in state
     case SET_PRODUCT_CARD_DATA: {
       return { ...state, products: action.data };
     }
-    //
-    case SET_ADD_PRODUCT_TO_CART: {
-      return { ...state, isAddProduct: action.value };
-    }
+    // set goods to cart
     case SET_PRODUCT_TO_CART: {
       return {
         ...state,
@@ -37,7 +36,7 @@ export const cardProductReducer = (state = initialState, action) => {
         sum: state.sum + action.product.cost,
       };
     }
-    //
+    // math
     case INCREMENT_GOODS: {
       const currentGoodsId = state.cart.findIndex(
         (item) => item.id === action.id
@@ -70,6 +69,7 @@ export const cardProductReducer = (state = initialState, action) => {
       const summa =
         newStateCart[currentGoodsId].cost *
         newStateCart[currentGoodsId].counter;
+
       newStateCart[currentGoodsId].counter = 1;
       newStateCart.splice(currentGoodsId, 1);
       return {
@@ -79,9 +79,12 @@ export const cardProductReducer = (state = initialState, action) => {
         isAlreadyInCart: false,
       };
     }
-    //
+    // validation add to cart
     case SET_ALREADY_IN_CART: {
       return { ...state, isAlreadyInCart: action.data };
+    }
+    case SET_ADD_PRODUCT_TO_CART: {
+      return { ...state, isAddProduct: action.value };
     }
     default: {
       return state;
@@ -89,38 +92,31 @@ export const cardProductReducer = (state = initialState, action) => {
   }
 };
 
+// set data in state
 export const setProductCardDataAC = (data) => ({
   type: SET_PRODUCT_CARD_DATA,
   data,
 });
-//
-export const setAddProductToCart = (value) => ({
-  type: SET_ADD_PRODUCT_TO_CART,
-  value,
-});
+// set goods to cart
 export const setProductToCartAC = (product) => ({
   type: SET_PRODUCT_TO_CART,
   product,
 });
-//
-export const incrementGoodsAC = (id) => ({
-  type: INCREMENT_GOODS,
-  id,
-});
-export const decrementGoodsAC = (id) => ({
-  type: DECREMENT_GOODS,
-  id,
-});
-export const removeFromCartAC = (id) => ({
-  type: REMOVE_FROM_CART,
-  id,
-});
-//
+// math
+export const incrementGoodsAC = (id) => ({ type: INCREMENT_GOODS, id });
+export const decrementGoodsAC = (id) => ({ type: DECREMENT_GOODS, id });
+export const removeFromCartAC = (id) => ({ type: REMOVE_FROM_CART, id });
+// validation add to cart
 export const setAlreadyInCartAC = (data) => ({
   type: SET_ALREADY_IN_CART,
   data,
 });
+export const setAddProductToCart = (value) => ({
+  type: SET_ADD_PRODUCT_TO_CART,
+  value,
+});
 
+// get and set goods
 export const getProductCardDataTC = () => async (dispatch) => {
   const response = await getProduct;
   const data = response.feed.entry.map((item) => {

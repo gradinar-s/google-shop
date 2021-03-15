@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-
 // ===========================================
 export const getCoordinateElement = (e) => {
   const coordinates = e.target.getBoundingClientRect();
@@ -29,7 +28,7 @@ export const createAnimationElement = (top, left, animName) => {
     left: ${left + 15}px;
     width: 25px;
     height: 25px;
-    background: red;
+    background: #cc4a16;
     border-radius: 50%;
     animation: ${animName} 0.8s forwards;
   `;
