@@ -47,18 +47,16 @@ const App = (props) => {
     }
   };
 
+  const CARD_PRODUCT = (
+    <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
+  );
   return (
     <div className="wrapper-app">
       <div className="container">
         <Header />
         <div className="shop-body">
-          <Route exact path="/" render={() => <CardProduct />} />
-          <Route
-            path="/selectionGoods"
-            render={() => (
-              <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
-            )}
-          />
+          <Route exact path="/" render={() => CARD_PRODUCT} />
+          <Route path="/selectionGoods" render={() => CARD_PRODUCT} />
           <Route
             path="/goods/:id"
             render={() => (
