@@ -1,10 +1,14 @@
 import { getProduct } from "../api/api";
 
 const SET_PRODUCT_CARD_DATA = "cardProduct/SET_PRODUCT_CARD_DATA";
+
 const SET_PRODUCT_TO_CART = "cardProduct/SET_PRODUCT_TO_CART";
+const SET_ADD_PRODUCT_TO_CART = "cartProduct/SET_ADD_PRODUCT_TO_CART";
+
 const INCREMENT_GOODS = "cardProduct/INCREMENT_GOODS";
 const DECREMENT_GOODS = "cartProduct/DECREMENT_GOODS";
 const REMOVE_FROM_CART = "cartProduct/REMOVE_FROM_CART";
+
 const SET_ALREADY_IN_CART = "cartProduct/SET_ALREADY_IN_CART";
 
 const initialState = {
@@ -14,14 +18,17 @@ const initialState = {
   sum: 0,
   isLoaded: false,
   isAlreadyInCart: false,
+  //
+  isAddProduct: false,
 };
 export const cardProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PRODUCT_CARD_DATA: {
-      return {
-        ...state,
-        products: action.data,
-      };
+      return { ...state, products: action.data };
+    }
+    //
+    case SET_ADD_PRODUCT_TO_CART: {
+      return { ...state, isAddProduct: action.value };
     }
     case SET_PRODUCT_TO_CART: {
       return {
@@ -30,6 +37,7 @@ export const cardProductReducer = (state = initialState, action) => {
         sum: state.sum + action.product.cost,
       };
     }
+    //
     case INCREMENT_GOODS: {
       const currentGoodsId = state.cart.findIndex(
         (item) => item.id === action.id
@@ -71,11 +79,9 @@ export const cardProductReducer = (state = initialState, action) => {
         isAlreadyInCart: false,
       };
     }
+    //
     case SET_ALREADY_IN_CART: {
-      return {
-        ...state,
-        isAlreadyInCart: action.data,
-      };
+      return { ...state, isAlreadyInCart: action.data };
     }
     default: {
       return state;
@@ -87,10 +93,16 @@ export const setProductCardDataAC = (data) => ({
   type: SET_PRODUCT_CARD_DATA,
   data,
 });
+//
+export const setAddProductToCart = (value) => ({
+  type: SET_ADD_PRODUCT_TO_CART,
+  value,
+});
 export const setProductToCartAC = (product) => ({
   type: SET_PRODUCT_TO_CART,
   product,
 });
+//
 export const incrementGoodsAC = (id) => ({
   type: INCREMENT_GOODS,
   id,
@@ -103,6 +115,7 @@ export const removeFromCartAC = (id) => ({
   type: REMOVE_FROM_CART,
   id,
 });
+//
 export const setAlreadyInCartAC = (data) => ({
   type: SET_ALREADY_IN_CART,
   data,

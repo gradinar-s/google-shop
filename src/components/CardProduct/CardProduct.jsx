@@ -1,38 +1,49 @@
-import style from "./CardProduct.module.css";
-
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { compose } from "redux";
 
-import {
-  setProductToCartAC,
-  setAlreadyInCartAC,
-} from "../../redux/cardProductReducer";
+import Portal from "../Common/Portal/Portal";
 import Checkout from "../Сheckout/Сheckout";
 import Notification from "../Common/Notification/Notification";
 
+import {
+  setProductToCartAC,
+  setAlreadyInCartAC,
+  setAddProductToCart,
+} from "../../redux/cardProductReducer";
+import {
+  openWindowCheckout,
+  setCoordinateElement,
+} from "../../redux/appReducer";
+import {
+  createAnimationElement,
+  getCoordinateElement,
+  setCoordinatesKeyframes,
+} from "../../helpers/functions/common";
+
+import style from "./CardProduct.module.css";
+
 const CardProduct = (props) => {
-  const addToCart = (card) => {
-    if (!props.cart.length) {
-      props.setProductToCartAC(card);
-    } else {
-      const result = props.cart.some((item) => {
-        return card.id === item.id;
-      });
-      if (result) {
-        props.setAlreadyInCartAC(true);
-        // To add a temporary notification
-        setTimeout(() => {
-          props.setAlreadyInCartAC(false);
-        }, 2800);
-      } else {
-        props.setProductToCartAC(card);
-      }
-    }
-  };
+  // Element creation and animation add to cart
+  const animationAddingItemCart = setCoordinatesKeyframes(
+    props.coordinatesIconCart.top,
+    props.coordinatesIconCart.left
+  );
+  const EffectAddingItemCart = createAnimationElement(
+    props.coordinateElement.top,
+    props.coordinateElement.left,
+    animationAddingItemCart
+  );
+
   return (
     <div className={style.cardProduct}>
+      <Checkout />
+      {props.isAddProduct && (
+        <Portal>
+          <EffectAddingItemCart />
+        </Portal>
+      )}
       {props.products.map((item) => (
         <div key={item.id} className={style.item}>
           <NavLink to={`/goods/${item.id}`} className={style.photoProduct}>
@@ -43,7 +54,12 @@ const CardProduct = (props) => {
           </NavLink>
           <div className={style.price}>{item.cost} UAH</div>
           <div className={style.buttons}>
-            <Checkout />
+            <button
+              onClick={props.openWindowCheckout}
+              className="buttonPrimary"
+            >
+              Buy
+            </button>
             <div className={style.addCartWrapper}>
               <Notification
                 className={style.selectionSize}
@@ -62,8 +78,11 @@ const CardProduct = (props) => {
                 ))}
               </Notification>
               <button
-                onClick={() => addToCart(item)}
                 className={`buttonPrimary ${style.addCart}`}
+                onClick={(e) => {
+                  props.addCartGoodsValidation(item);
+                  props.setCoordinateElement(getCoordinateElement(e));
+                }}
               />
             </div>
           </div>
@@ -77,9 +96,19 @@ const mapStateToProps = (state) => {
   return {
     products: state.cardProduct.products,
     cart: state.cardProduct.cart,
+    isAddProduct: state.cardProduct.isAddProduct,
+    coordinateElement: state.app.coordinateElement,
+    coordinatesIconCart: state.app.coordinatesIconCart,
   };
 };
 
 export default compose(
-  connect(mapStateToProps, { setProductToCartAC, setAlreadyInCartAC })
+  connect(mapStateToProps, {
+    openWindowCheckout,
+    setCoordinateElement,
+    //
+    setProductToCartAC,
+    setAlreadyInCartAC,
+    setAddProductToCart,
+  })
 )(CardProduct);

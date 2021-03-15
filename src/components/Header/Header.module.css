@@ -31,13 +31,33 @@
 .rowNav::after {
   top: 0;
 }
-
 .title {
   font-size: 35px;
   font-weight: 600;
   margin: 10px 0px 0px 0px;
   color: #000;
   text-decoration: none;
+}
+/* Button cart =================================================== */
+.titleCart {
+  position: relative;
+  display: inline-block;
+  margin: 15px 15px 10px 0px;
+  cursor: pointer;
+  z-index: 1;
+}
+.quan {
+  position: absolute;
+  text-align: center;
+  top: -7px;
+  right: -12px;
+  color: #eee;
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
+  line-height: 1.8;
+  background-color: rgb(204, 74, 22);
+  border-radius: 50%;
 }
 /* Notifatication ================================================ */
 .alreadyNotification {

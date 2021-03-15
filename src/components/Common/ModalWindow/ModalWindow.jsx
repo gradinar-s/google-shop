@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import Portal from "../Portal/Portal";
 
 import "./ModalWindow.css";
@@ -10,6 +11,7 @@ const ModalWindow = ({
   isClosed,
   isOpen,
   width,
+  windowClosingProcess,
 }) => {
   const closeModalWindow = (e) => {
     if (e.target.dataset.modalwindow) {
@@ -21,7 +23,11 @@ const ModalWindow = ({
     <>
       {isOpen && (
         <Portal>
-          <div className={`modalWindow ${className}`}>
+          <div
+            className={`modalWindow ${
+              windowClosingProcess ? "hide" : ""
+            } ${className}`}
+          >
             <div
               className="modalOverlay"
               onClick={closeModalWindow}
@@ -45,4 +51,9 @@ const ModalWindow = ({
   );
 };
 
-export default ModalWindow;
+const mapStateToProps = (state) => {
+  return {
+    windowClosingProcess: state.app.windowClosingProcess,
+  };
+};
+export default connect(mapStateToProps, null)(ModalWindow);
