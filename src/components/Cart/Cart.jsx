@@ -15,7 +15,7 @@ const Cart = (props) => {
       width={!props.cart.length && "400px"}
     >
       {props.cart.length ? (
-        <ProductInCart />
+        <ProductInCart addCartGoodsValidation={props.addCartGoodsValidation} />
       ) : (
         <span className={style.backToShop} onClick={props.closePopup}>
           Back to shopping

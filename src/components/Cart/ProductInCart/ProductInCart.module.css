@@ -6,16 +6,52 @@
   font-weight: 700;
   margin: 30px 0px 10px 0px;
 }
-.info img {
-  object-fit: cover;
-}
-.nameGoods {
+.mainInfoProduct {
   width: 100%;
+  margin-left: 10px;
 }
+.selectSize {
+  font-size: 14px;
+  font-weight: 400;
+}
+.notSelectSize {
+  position: relative;
+  font-size: 16px;
+  display: inline;
+}
+.btnSelectSize {
+  font-size: 14px;
+  font-weight: 400;
+  color: #2bbaf7;
+  cursor: pointer;
+  text-decoration: underline;
+}
+/*  */
+.notSelectSize:hover .selectionSize {
+  transform: scale(1) translateY(-100%);
+  transition: all 0.5s;
+  opacity: 1;
+  z-index: 1;
+}
+.selectionSize {
+  position: absolute;
+  transform: scale(0) translateY(-100%);
+  left: 50%;
+  margin-left: -50px;
+  width: 100px;
+  opacity: 0;
+  padding-bottom: 15px;
+  transition: all 0.5s;
+}
+/*  */
 .smallProductIcons {
   width: 40px;
-  height: 40px;
-  margin: 0px 10px 0px 0px;
+  height: 50px;
+}
+.smallProductIcons img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .btnCartManagement {
   margin: 0px 0px 0px 10px;

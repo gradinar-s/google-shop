@@ -16,6 +16,7 @@ import {
   setProductToCartAC,
   setAlreadyInCartAC,
   setAddProductToCart,
+  setSelectSize,
 } from "../../redux/cardProductReducer";
 import {
   createAnimationElement,
@@ -78,7 +79,11 @@ const ProductPage = (props) => {
           {goods.availableSizes.map((size) => (
             <div
               key={size}
-              onClick={() => console.log(size)}
+              onClick={(e) => {
+                props.setCoordinateElement(getCoordinateElement(e));
+                props.addCartGoodsValidation(goods);
+                props.setSelectSize(size);
+              }}
               className={style.sizeGoods}
             >
               {size}
@@ -126,9 +131,9 @@ export default compose(
     setProductToCartAC,
     setAlreadyInCartAC,
     setAddProductToCart,
-    //
     openWindowCheckout,
     setCoordinateElement,
+    setSelectSize,
   }),
   withRouter
 )(ProductPage);

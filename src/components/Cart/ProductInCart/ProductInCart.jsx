@@ -2,6 +2,7 @@ import style from "./ProductInCart.module.css";
 
 import React from "react";
 import Checkout from "../../Сheckout/Сheckout";
+import SelectSize from "../../SelectSize/SelectSize";
 
 import { connect } from "react-redux";
 import {
@@ -16,6 +17,7 @@ const ProductInCart = ({
   incrementGoodsAC,
   removeFromCartAC,
   sum,
+  addCartGoodsValidation,
 }) => {
   const incrementGoods = (id) => {
     incrementGoodsAC(id);
@@ -30,8 +32,29 @@ const ProductInCart = ({
       {cart.map((item) => (
         <div key={item.id} className={style.goodsItem}>
           <div className={style.info}>
-            <img className={style.smallProductIcons} src={item.img} alt="" />
-            <span className={style.nameGoods}>{item.name}</span>
+            <div className={style.smallProductIcons}>
+              <img src={item.img} alt="" />
+            </div>
+            <div className={style.mainInfoProduct}>
+              <div className={style.nameGoods}>{item.name}</div>
+              {item.selectSize ? (
+                <div className={style.selectSize}>
+                  Select size: {item.selectSize}
+                </div>
+              ) : (
+                <div className={style.notSelectSize}>
+                  <span className={style.btnSelectSize}>Select size</span>
+                  <SelectSize
+                    className={style.selectionSize}
+                    direction="bottom"
+                    background="#333"
+                    borderColor="#333"
+                    iterationEl={item}
+                    addCartGoodsValidation={addCartGoodsValidation}
+                  />
+                </div>
+              )}
+            </div>
             <span className={style.btnCartManagement}>
               <Checkout />
               <button
@@ -77,6 +100,7 @@ const mapStateToProps = (state) => {
     cart: state.cardProduct.cart,
     sum: state.cardProduct.sum,
     totalCost: state.cardProduct.totalCost,
+    selectSize: state.cardProduct.selectSize,
   };
 };
 export default connect(mapStateToProps, {

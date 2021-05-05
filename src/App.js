@@ -37,7 +37,7 @@ const App = (props) => {
         // To add a temporary notification
         setTimeout(() => {
           props.setAlreadyInCartAC(false);
-        }, 2800);
+        }, 2700);
       } else {
         props.setProductToCartAC(card);
         props.setAddProductToCart(true);
@@ -57,8 +57,8 @@ const App = (props) => {
   }
   return (
     <div className="wrapper-app">
+      <Header addCartGoodsValidation={addCartGoodsValidation} />
       <div className="container">
-        <Header />
         <div className="shop-body">
           <Route exact path="/" render={() => CARD_PRODUCT} />
           <Route path="/selectionGoods" render={() => CARD_PRODUCT} />

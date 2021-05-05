@@ -38,13 +38,23 @@ const Header = (props) => {
 
   return (
     <header className={style.header}>
-      <div className={style.rowTitle}>
-        <NavLink to="/selectionGoods" className={style.title}>
-          Google Shop
-        </NavLink>
-      </div>
-      <div className={style.nav}>
-        <div className={style.rowNav}>
+      <div className={style.rowNav}>
+        <div className={style.rowTitle}>
+          <NavLink to="/selectionGoods" className={style.title}>
+            Google Shop
+          </NavLink>
+        </div>
+        <div className={style.cartWrapper}>
+          {props.isAlreadyInCart && (
+            <Notification
+              className={style.alreadyNotification}
+              direction="right"
+            >
+              <span className={style.message}>
+                This goods is already in your cart
+              </span>
+            </Notification>
+          )}
           <div
             ref={cartElement}
             className={style.titleCart}
@@ -53,18 +63,12 @@ const Header = (props) => {
             <img src={cart} alt="" />
             <span className={style.quan}>{props.cart.length}</span>
           </div>
-          <Cart cart={props.cart} closePopup={closePopup} />
-          {props.isAlreadyInCart && (
-            <Notification
-              className={style.alreadyNotification}
-              direction="left"
-            >
-              <span className={style.message}>
-                This goods is already in your cart
-              </span>
-            </Notification>
-          )}
         </div>
+        <Cart
+          cart={props.cart}
+          closePopup={closePopup}
+          addCartGoodsValidation={props.addCartGoodsValidation}
+        />
       </div>
     </header>
   );

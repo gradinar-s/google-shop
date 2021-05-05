@@ -23,6 +23,7 @@ import {
 } from "../../helpers/functions/common";
 
 import style from "./CardProduct.module.css";
+import SelectSize from "../SelectSize/SelectSize";
 
 const CardProduct = (props) => {
   // Element creation and animation add to cart
@@ -61,22 +62,14 @@ const CardProduct = (props) => {
               Buy
             </button>
             <div className={style.addCartWrapper}>
-              <Notification
+              <SelectSize
                 className={style.selectionSize}
                 direction="bottom"
                 background="#333"
                 borderColor="#333"
-              >
-                {item.availableSizes.map((size, index) => (
-                  <span
-                    key={index}
-                    className={style.size}
-                    onClick={() => console.log(size)}
-                  >
-                    {size}
-                  </span>
-                ))}
-              </Notification>
+                iterationEl={item}
+                addCartGoodsValidation={props.addCartGoodsValidation}
+              />
               <button
                 className={`buttonPrimary ${style.addCart}`}
                 onClick={(e) => {

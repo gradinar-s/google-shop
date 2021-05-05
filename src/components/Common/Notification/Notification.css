@@ -42,8 +42,9 @@
   -webkit-transform: rotate(135deg);
 }
 .notification .arrow.right {
-  top: 7px;
-  right: -6px;
+  top: 50%;
+  margin-top: -5px;
+  right: -5px;
   transform: rotate(315deg);
   -webkit-transform: rotate(315deg);
 }
