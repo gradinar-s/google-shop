@@ -1,15 +1,19 @@
-import style from "./Checkout.module.css";
-
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+
 import { connect } from "react-redux";
-import ModalWindow from "../Common/ModalWindow/ModalWindow";
+import { mailer } from "../../nodemailer";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   closeWindowCheckout,
   setWindowClosingProcess,
 } from "../../redux/appReducer";
 
+import ModalWindow from "../Common/ModalWindow/ModalWindow";
+
+import style from "./Checkout.module.css";
+
 const Checkout = (props) => {
+  // Popup
   const closePopup = () => {
     const ANIMATION_TIME = 210;
     props.setWindowClosingProcess(true);
@@ -31,7 +35,17 @@ const Checkout = (props) => {
   };
 
   const onSubmitOrderForm = (data) => {
-    console.log(data);
+    const message = {
+      from: "emmitt.schuppe@ethereal.email",
+      to: data.email,
+      subject: "New order",
+      text: `
+      Order #1
+      Name: ${data.name}
+      Phone: ${data.tel}
+      `,
+    };
+    mailer(message);
   };
 
   return (
