@@ -33,11 +33,15 @@ const App = (props) => {
         return card.id === item.id;
       });
       if (result) {
-        props.setAlreadyInCartAC(true);
-        // To add a temporary notification
-        setTimeout(() => {
-          props.setAlreadyInCartAC(false);
-        }, 2700);
+        if (!card.selectSize) {
+          return;
+        } else {
+          props.setAlreadyInCartAC(true);
+          // To add a temporary notification
+          setTimeout(() => {
+            props.setAlreadyInCartAC(false);
+          }, 2700);
+        }
       } else {
         props.setProductToCartAC(card);
         props.setAddProductToCart(true);

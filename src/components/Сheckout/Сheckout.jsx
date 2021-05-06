@@ -1,7 +1,6 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { mailer } from "../../nodemailer";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   closeWindowCheckout,
@@ -35,17 +34,7 @@ const Checkout = (props) => {
   };
 
   const onSubmitOrderForm = (data) => {
-    const message = {
-      from: "emmitt.schuppe@ethereal.email",
-      to: data.email,
-      subject: "New order",
-      text: `
-      Order #1
-      Name: ${data.name}
-      Phone: ${data.tel}
-      `,
-    };
-    mailer(message);
+    console.log(data);
   };
 
   return (
