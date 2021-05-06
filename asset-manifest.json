@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/google-shop/static/css/main.851d71de.chunk.css",
-    "main.js": "/google-shop/static/js/main.78d2b6bc.chunk.js",
-    "main.js.map": "/google-shop/static/js/main.78d2b6bc.chunk.js.map",
-    "runtime-main.js": "/google-shop/static/js/runtime-main.8814e78c.js",
-    "runtime-main.js.map": "/google-shop/static/js/runtime-main.8814e78c.js.map",
-    "static/js/2.d32ddfd4.chunk.js": "/google-shop/static/js/2.d32ddfd4.chunk.js",
-    "static/js/2.d32ddfd4.chunk.js.map": "/google-shop/static/js/2.d32ddfd4.chunk.js.map",
-    "static/js/3.b0f4365a.chunk.js": "/google-shop/static/js/3.b0f4365a.chunk.js",
-    "static/js/3.b0f4365a.chunk.js.map": "/google-shop/static/js/3.b0f4365a.chunk.js.map",
+    "main.js": "/google-shop/static/js/main.e44aefe2.chunk.js",
+    "main.js.map": "/google-shop/static/js/main.e44aefe2.chunk.js.map",
+    "runtime-main.js": "/google-shop/static/js/runtime-main.6100e0a7.js",
+    "runtime-main.js.map": "/google-shop/static/js/runtime-main.6100e0a7.js.map",
+    "static/js/2.1ff7963a.chunk.js": "/google-shop/static/js/2.1ff7963a.chunk.js",
+    "static/js/2.1ff7963a.chunk.js.map": "/google-shop/static/js/2.1ff7963a.chunk.js.map",
+    "static/js/3.68e376a7.chunk.js": "/google-shop/static/js/3.68e376a7.chunk.js",
+    "static/js/3.68e376a7.chunk.js.map": "/google-shop/static/js/3.68e376a7.chunk.js.map",
     "index.html": "/google-shop/index.html",
     "static/css/main.851d71de.chunk.css.map": "/google-shop/static/css/main.851d71de.chunk.css.map",
-    "static/js/2.d32ddfd4.chunk.js.LICENSE.txt": "/google-shop/static/js/2.d32ddfd4.chunk.js.LICENSE.txt",
+    "static/js/2.1ff7963a.chunk.js.LICENSE.txt": "/google-shop/static/js/2.1ff7963a.chunk.js.LICENSE.txt",
     "static/media/Cart.module.css": "/google-shop/static/media/back.d8f688ff.svg",
     "static/media/CardProduct.module.css": "/google-shop/static/media/cart.ddc068c2.svg",
     "static/media/ProductPage.module.scss": "/google-shop/static/media/remove.5ea302e1.svg",
@@ -19,9 +19,9 @@
     "static/media/loading.48060ccb.svg": "/google-shop/static/media/loading.48060ccb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8814e78c.js",
-    "static/js/2.d32ddfd4.chunk.js",
+    "static/js/runtime-main.6100e0a7.js",
+    "static/js/2.1ff7963a.chunk.js",
     "static/css/main.851d71de.chunk.css",
-    "static/js/main.78d2b6bc.chunk.js"
+    "static/js/main.e44aefe2.chunk.js"
   ]
 }
