@@ -26,7 +26,6 @@
   cursor: pointer;
   text-decoration: underline;
 }
-/*  */
 .notSelectSize:hover .selectionSize {
   transform: scale(1) translateY(-100%);
   transition: all 0.5s;
@@ -53,23 +52,50 @@
   height: 100%;
   object-fit: cover;
 }
+/* Buttons cart */
 .btnCartManagement {
-  margin: 0px 0px 0px 10px;
   display: flex;
-  width: 60px;
+  width: 100px;
+  margin: 0px 0px 0px 10px;
   transition: 0.3s;
 }
-.btnCartManagement:hover .btnDelGoodsTheCart {
+.btnBuyWrapper {
+  width: 100%;
+}
+.btnDelWrapper {
+  width: 100%;
+}
+.btnDelWrapper:hover .btnDelGoodsTheCart {
   background: url("../../../img/icon/delete-white.svg") 50% / 20px no-repeat;
   transition: 0.3s;
 }
 .btnDelGoodsTheCart {
-  width: 50px;
   margin: 0px 0px 0px 5px;
   background: url("../../../img/icon/delete.svg") 50% / 20px no-repeat;
   transition: 0.3s;
 }
-
+/* On hover buy button view notification select size */
+.btnDisabled {
+  position: relative;
+}
+.notifySelectSize {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  margin-left: -80px;
+  padding-bottom: 15px;
+  width: 160px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  transform: scale(0);
+  transition: 0.3s;
+}
+.btnDisabled:hover .notifySelectSize {
+  transform: scale(1);
+  transition: 0.3s;
+}
+/* Quantity */
 .quantityTitle span {
   font-weight: 700;
   margin: 0px 10px 0px 0px;

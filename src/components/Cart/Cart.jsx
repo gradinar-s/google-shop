@@ -1,10 +1,11 @@
-import style from "./Cart.module.css";
-
 import React from "react";
+
 import { connect } from "react-redux";
 
 import ProductInCart from "../Cart/ProductInCart/ProductInCart";
 import ModalWindow from "../Common/ModalWindow/ModalWindow";
+
+import style from "./Cart.module.css";
 
 const Cart = (props) => {
   return (

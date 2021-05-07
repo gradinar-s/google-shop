@@ -35,3 +35,8 @@ export const createAnimationElement = (top, left, animName) => {
   return EffectAddingItemCart;
 };
 // ===========================================
+// Set localstorage data
+export const setLocalStorageData = (name, data) => {
+  localStorage.setItem(name, JSON.stringify(data));
+};
+// ===========================================

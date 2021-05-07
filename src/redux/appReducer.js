@@ -1,4 +1,3 @@
-import { sendEmail } from "../api/api";
 import { getProductCardDataTC } from "./cardProductReducer";
 
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";

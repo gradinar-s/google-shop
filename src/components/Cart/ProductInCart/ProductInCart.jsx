@@ -1,8 +1,4 @@
-import style from "./ProductInCart.module.css";
-
 import React from "react";
-import Checkout from "../../Сheckout/Сheckout";
-import SelectSize from "../../SelectSize/SelectSize";
 
 import { connect } from "react-redux";
 import {
@@ -10,6 +6,12 @@ import {
   decrementGoodsAC,
   removeFromCartAC,
 } from "../../../redux/cardProductReducer";
+import { closeCart, openWindowCheckout } from "../../../redux/appReducer";
+
+import SelectSize from "../../SelectSize/SelectSize";
+import Notification from "../../Common/Notification/Notification";
+
+import style from "./ProductInCart.module.css";
 
 const ProductInCart = ({
   cart,
@@ -18,6 +20,8 @@ const ProductInCart = ({
   removeFromCartAC,
   sum,
   addCartGoodsValidation,
+  closeCart,
+  openWindowCheckout,
 }) => {
   const incrementGoods = (id) => {
     incrementGoodsAC(id);
@@ -55,13 +59,36 @@ const ProductInCart = ({
                 </div>
               )}
             </div>
-            <span className={style.btnCartManagement}>
-              <Checkout />
-              <button
-                onClick={() => removeFromCartAC(item.id)}
-                className={`buttonPrimary ${style.btnDelGoodsTheCart}`}
-              ></button>
-            </span>
+            <div className={style.btnCartManagement}>
+              <div
+                className={`${style.btnBuyWrapper} ${
+                  item.selectSize ? "" : style.btnDisabled
+                }`}
+              >
+                <Notification
+                  direction="bottom"
+                  className={style.notifySelectSize}
+                >
+                  <span>Please choose size first</span>
+                </Notification>
+                <button
+                  disabled={item.selectSize ? false : true}
+                  onClick={() => {
+                    closeCart();
+                    openWindowCheckout();
+                  }}
+                  className={"buttonPrimary"}
+                >
+                  Buy
+                </button>
+              </div>
+              <div className={style.btnDelWrapper}>
+                <button
+                  onClick={() => removeFromCartAC(item.id)}
+                  className={`buttonPrimary ${style.btnDelGoodsTheCart}`}
+                ></button>
+              </div>
+            </div>
           </div>
           <div className={style.quantityGoods}>
             <div className={style.quantityTitle}>
@@ -83,7 +110,6 @@ const ProductInCart = ({
               </div>
             </div>
           </div>
-          {}
         </div>
       ))}
       {!!cart.length && (
@@ -107,4 +133,6 @@ export default connect(mapStateToProps, {
   incrementGoodsAC,
   decrementGoodsAC,
   removeFromCartAC,
+  closeCart,
+  openWindowCheckout,
 })(ProductInCart);
