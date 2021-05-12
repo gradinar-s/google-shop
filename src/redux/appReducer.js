@@ -1,3 +1,4 @@
+import { sendOrderTelegramBot } from "../api/api";
 import { getProductCardDataTC } from "./cardProductReducer";
 
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
@@ -13,6 +14,8 @@ const SET_WINDOW_CLOSING_PROCESS = "app/SET_WINDOW_CLOSING_PROCESS";
 // coordinates
 const SET_COORDINATE_ELEMENT = "app/SET_COORDINATE_ELEMENT";
 const SET_COORDINATES_ICON_CART = "app/SET_COORDINATES_ICON_CART";
+// set message sending status
+const SET_MESSAGE_SEND_STATUS = "app/SET_MESSAGE_SEND_STATUS";
 
 const initialState = {
   initializedApp: false,
@@ -25,6 +28,8 @@ const initialState = {
   // coordinates
   coordinateElement: {},
   coordinatesIconCart: {},
+  // check send order tg bot
+  isMessageSentSuccess: null,
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -49,6 +54,9 @@ export const appReducer = (state = initialState, action) => {
       return { ...state, coordinateElement: action.coordinates };
     case SET_COORDINATES_ICON_CART:
       return { ...state, coordinatesIconCart: action.coordinates };
+    // set message sending status
+    case SET_MESSAGE_SEND_STATUS:
+      return { ...state, isMessageSentSuccess: action.status };
     default:
       return state;
   }
@@ -75,10 +83,21 @@ export const setCoordinatesIconCart = (coordinates) => ({
   type: SET_COORDINATES_ICON_CART,
   coordinates,
 });
+// set message sending status
+export const setMessageSendStatus = (status) => ({
+  type: SET_MESSAGE_SEND_STATUS,
+  status,
+});
 
 // initialization of the application
 export const initializeApp = () => async (dispatch) => {
   const initialized = dispatch(getProductCardDataTC());
   await Promise.all([initialized]);
   dispatch(initializedSuccess());
+};
+
+// send message to telegram bot
+export const sendMessageTelegramBot = (message) => async (dispatch) => {
+  const data = await sendOrderTelegramBot(message);
+  dispatch(setMessageSendStatus(data.ok));
 };

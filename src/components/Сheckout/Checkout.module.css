@@ -19,7 +19,30 @@
   margin: 5px 0px 0px 0px;
   width: 100%;
 }
+/* Message after ordering */
+.msgAfterOrder {
+  display: flex;
+  align-items: center;
+}
+.msgAfterOrder img {
+  width: 30px;
+  animation: viewcheckMark 0.5s;
+}
+.description {
+  padding-left: 10px;
+}
 
+/* View check  mark animation */
+@keyframes viewcheckMark {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Media */
 @media (max-width: 424px) {
   .formCheckout [type="text"],
   [type="email"],

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 import {
   setProductToCartAC,
@@ -15,6 +16,7 @@ import ProductPage from "./components/ProductPage/ProductPage";
 import Loading from "./components/Common/Loading/Loading";
 
 import "./App.css";
+import PageNotExist from "./components/PageNotExist/PageNotExist";
 
 const App = (props) => {
   // Get data on page load
@@ -52,10 +54,6 @@ const App = (props) => {
     }
   };
 
-  const CARD_PRODUCT = (
-    <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
-  );
-
   if (!props.initializedApp) {
     return <Loading />;
   }
@@ -64,14 +62,30 @@ const App = (props) => {
       <Header addCartGoodsValidation={addCartGoodsValidation} />
       <div className="container">
         <div className="shop-body">
-          <Route exact path="/" render={() => CARD_PRODUCT} />
-          <Route path="/selectionGoods" render={() => CARD_PRODUCT} />
-          <Route
-            path="/goods/:id"
-            render={() => (
-              <ProductPage addCartGoodsValidation={addCartGoodsValidation} />
-            )}
-          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
+              )}
+            />
+            <Route
+              path="/selectionGoods"
+              render={() => (
+                <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
+              )}
+            />
+            <Route
+              path="/goods/:id"
+              render={() => (
+                <ProductPage addCartGoodsValidation={addCartGoodsValidation} />
+              )}
+            />
+            <Route
+              render={() => <PageNotExist location={props.location.pathname} />}
+            />
+          </Switch>
         </div>
       </div>
     </div>
@@ -83,9 +97,12 @@ const mapStateToProps = (state) => {
     cart: state.cardProduct.cart,
   };
 };
-export default connect(mapStateToProps, {
-  setProductToCartAC,
-  setAddProductToCart,
-  setAlreadyInCartAC,
-  initializeApp,
-})(App);
+export default compose(
+  connect(mapStateToProps, {
+    setProductToCartAC,
+    setAddProductToCart,
+    setAlreadyInCartAC,
+    initializeApp,
+  }),
+  withRouter
+)(App);

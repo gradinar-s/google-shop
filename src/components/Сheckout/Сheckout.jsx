@@ -5,10 +5,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   closeWindowCheckout,
   setWindowClosingProcess,
+  sendMessageTelegramBot,
+  setMessageSendStatus,
 } from "../../redux/appReducer";
 
 import ModalWindow from "../Common/ModalWindow/ModalWindow";
 
+import succeessIcon from "../../img/icon/checkMark.svg";
 import style from "./Checkout.module.css";
 
 const Checkout = (props) => {
@@ -19,6 +22,7 @@ const Checkout = (props) => {
     setTimeout(() => {
       props.closeWindowCheckout();
       props.setWindowClosingProcess(false);
+      props.setMessageSendStatus(false); // Hide successful order notification
     }, ANIMATION_TIME);
   };
 
@@ -34,7 +38,7 @@ const Checkout = (props) => {
   };
 
   const onSubmitOrderForm = (data) => {
-    console.log(data);
+    props.sendMessageTelegramBot(data);
   };
 
   return (
@@ -44,28 +48,38 @@ const Checkout = (props) => {
       isOpen={props.isOpenCheckout}
       width="450px"
     >
-      <Formik
-        initialValues={{ name: "", email: "", tel: "" }}
-        validate={orderFormValidation}
-        onSubmit={onSubmitOrderForm}
-      >
-        {({ isSubmitting }) => (
-          <Form className={style.formCheckout}>
-            <Field type="text" name="name" placeholder="Name" />
-            <Field type="email" name="email" placeholder="Email" />
-            <ErrorMessage name="email" className="error" component="div" />
-            <Field type="tel" name="tel" placeholder="Phone" />
-            <ErrorMessage name="tel" component="div" />
-            <button
-              className={`buttonPrimary ${style.btnSubmitForm}`}
-              type="submit"
-              disabled={isSubmitting}
-            >
-              Buy
-            </button>
-          </Form>
-        )}
-      </Formik>
+      {!props.isMessageSentSuccess && (
+        <Formik
+          initialValues={{ name: "", email: "", tel: "" }}
+          validate={orderFormValidation}
+          onSubmit={onSubmitOrderForm}
+        >
+          {({ isSubmitting }) => (
+            <Form className={style.formCheckout}>
+              <Field type="text" name="name" placeholder="Name" />
+              <Field type="email" name="email" placeholder="Email" />
+              <ErrorMessage name="email" className="error" component="div" />
+              <Field type="tel" name="tel" placeholder="Phone" />
+              <ErrorMessage name="tel" component="div" />
+              <button
+                className={`buttonPrimary ${style.btnSubmitForm}`}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Buy
+              </button>
+            </Form>
+          )}
+        </Formik>
+      )}
+      {props.isMessageSentSuccess && (
+        <div className={style.msgAfterOrder}>
+          <img src={succeessIcon} alt="" />
+          <span className={style.description}>
+            Your order has been sent for processing
+          </span>
+        </div>
+      )}
     </ModalWindow>
   );
 };
@@ -73,9 +87,12 @@ const Checkout = (props) => {
 const mapStateToProps = (state) => {
   return {
     isOpenCheckout: state.app.isOpenCheckout,
+    isMessageSentSuccess: state.app.isMessageSentSuccess,
   };
 };
 export default connect(mapStateToProps, {
   closeWindowCheckout,
   setWindowClosingProcess,
+  sendMessageTelegramBot,
+  setMessageSendStatus,
 })(Checkout);
