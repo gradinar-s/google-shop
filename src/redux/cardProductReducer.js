@@ -1,4 +1,4 @@
-import { getProduct } from "../api/api";
+import { sheetsAPI } from "../api/api";
 
 // set data goods to state app
 const SET_PRODUCT_CARD_DATA = "cardProduct/SET_PRODUCT_CARD_DATA";
@@ -135,7 +135,8 @@ export const setSelectSize = (size) => ({
 
 // get and set goods
 export const getProductCardDataTC = () => async (dispatch) => {
-  const response = await getProduct;
+  const response = await sheetsAPI.getProduct();
+
   const data = response.feed.entry.map((item) => {
     return {
       id: item.gsx$id.$t,

@@ -1,4 +1,4 @@
-import { sendOrderTelegramBot } from "../api/api";
+import { telegramBotAPI } from "../api/api";
 import { getProductCardDataTC } from "./cardProductReducer";
 
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
@@ -98,6 +98,6 @@ export const initializeApp = () => async (dispatch) => {
 
 // send message to telegram bot
 export const sendMessageTelegramBot = (message) => async (dispatch) => {
-  const data = await sendOrderTelegramBot(message);
+  const data = await telegramBotAPI.sendOrderTelegramBot(message);
   dispatch(setMessageSendStatus(data.ok));
 };
