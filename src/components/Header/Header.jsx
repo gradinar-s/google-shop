@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Cart from "../Cart/Cart";
+import Icon from "../Common/Icon/Icon";
 import Notification from "../Common/Notification/Notification";
 
 import {
@@ -12,8 +13,10 @@ import {
   setCoordinatesIconCart,
 } from "../../redux/appReducer";
 
-import style from "./Header.module.css";
 import cart from "../../img/icon/cart.svg";
+import user from "../../img/icon/user.svg";
+
+import style from "./Header.module.css";
 
 const Header = (props) => {
   // Close modal window
@@ -63,6 +66,7 @@ const Header = (props) => {
             <img src={cart} alt="" />
             <span className={style.quan}>{props.cart.length}</span>
           </div>
+          <Icon className={style.userAuthIcon} src={user} />
         </div>
         <Cart
           cart={props.cart}
@@ -81,6 +85,7 @@ const mapStateToProps = (state) => {
     initializedApp: state.app.initializedApp,
   };
 };
+
 export default connect(mapStateToProps, {
   openCart,
   closeCart,

@@ -31,7 +31,7 @@
   height: 30px;
   position: relative;
   display: inline-block;
-  margin: 15px 15px 10px 0px;
+  margin: 15px 25px 10px 0px;
   cursor: pointer;
   z-index: 1;
 }
@@ -57,7 +57,13 @@
   display: flex;
   align-items: center;
 }
-/* Notifatication =========================2.8======================= */
+/* Button user auth ===============================================*/
+.userAuthIcon {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+/* Notifatication ================================================ */
 .alreadyNotification {
   margin-right: 15px;
   animation: viewNotification 2.8s forwards;

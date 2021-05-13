@@ -17,7 +17,8 @@ export const telegramBotAPI = {
   // Send message to telegram bot
   sendOrderTelegramBot(message) {
     const token = "1846676872:AAHxkuehchRZKGuoDCfqp0Y8-CmyJSWr_vs";
-    const chatId = "435055029";
+
+    const chatIds = ["435055029"];
 
     const nstr = "%0A";
 
@@ -25,10 +26,12 @@ export const telegramBotAPI = {
       New order from *${message.name}* ${nstr} ${nstr} 1) Phone: ${message.tel} ${nstr} 2) Email: ${message.email}
     `;
 
-    return instanceTelegramBot
-      .get(
-        `bot${token}/sendMessage?chat_id=${chatId}&text=${textMassage}&parse_mode=markdown`
-      )
-      .then((response) => response.data);
+    for (let i = 0; i <= chatIds.length; i++) {
+      return instanceTelegramBot
+        .get(
+          `bot${token}/sendMessage?chat_id=${chatIds[i]}&text=${textMassage}&parse_mode=markdown`
+        )
+        .then((response) => response.data);
+    }
   },
 };
