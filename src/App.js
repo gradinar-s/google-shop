@@ -10,13 +10,15 @@ import {
 } from "./redux/cardProductReducer";
 import { initializeApp } from "./redux/appReducer";
 
-import Header from "./components/Header/Header";
-import CardProduct from "./components/CardProduct/CardProduct";
-import ProductPage from "./components/ProductPage/ProductPage";
-import Loading from "./components/Common/Loading/Loading";
+import HeaderContainer from "./components/containers/HeaderContainer/HeaderContainer";
+import CardProductContainer from "./components/containers/CardProductContainer/CardProductContainer";
+
+import Loading from "./components/presentations/Loading/Loading";
+import ProductPage from "./pages/ProductPage/ProductPage";
+import NotExistPage from "./pages/NotExistPage/NotExistPage";
 
 import "./App.css";
-import PageNotExist from "./components/PageNotExist/PageNotExist";
+import "./null.sass";
 
 const App = (props) => {
   // Get data on page load
@@ -59,7 +61,7 @@ const App = (props) => {
   }
   return (
     <div className="wrapper-app">
-      <Header addCartGoodsValidation={addCartGoodsValidation} />
+      <HeaderContainer addCartGoodsValidation={addCartGoodsValidation} />
       <div className="container">
         <div className="shop-body">
           <Switch>
@@ -67,13 +69,17 @@ const App = (props) => {
               exact
               path="/"
               render={() => (
-                <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
+                <CardProductContainer
+                  addCartGoodsValidation={addCartGoodsValidation}
+                />
               )}
             />
             <Route
               path="/selectionGoods"
               render={() => (
-                <CardProduct addCartGoodsValidation={addCartGoodsValidation} />
+                <CardProductContainer
+                  addCartGoodsValidation={addCartGoodsValidation}
+                />
               )}
             />
             <Route
@@ -83,7 +89,7 @@ const App = (props) => {
               )}
             />
             <Route
-              render={() => <PageNotExist location={props.location.pathname} />}
+              render={() => <NotExistPage location={props.location.pathname} />}
             />
           </Switch>
         </div>
