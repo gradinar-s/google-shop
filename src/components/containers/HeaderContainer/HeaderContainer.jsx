@@ -6,7 +6,7 @@ import {
   closeCart,
   setWindowClosingProcess,
   setCoordinatesIconCart,
-} from "../../../redux/appReducer";
+} from "../../../store/appReducer";
 
 import Header from "../../presentations/Header/Header";
 

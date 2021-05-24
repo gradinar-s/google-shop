@@ -98,6 +98,7 @@
 @media (max-width: 424px) {
   .item {
     flex: 1 1 100%;
+    margin: 0 0 20px 0px;
   }
   .photoProduct {
     position: relative;

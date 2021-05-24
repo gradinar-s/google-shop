@@ -6,7 +6,7 @@ import {
   setWindowClosingProcess,
   sendMessageTelegramBot,
   setMessageSendStatus,
-} from "../../../redux/appReducer";
+} from "../../../store/appReducer";
 
 import Checkout from "../../presentations/Сheckout/Сheckout";
 
@@ -25,11 +25,28 @@ const CheckoutContainer = (props) => {
   const orderFormValidation = (values) => {
     const errors = {};
 
+    const regexEmail = new RegExp(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/,
+      "i"
+    );
+
+    const regexTel = new RegExp(
+      /^((8|\+[0-9])[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+      "i"
+    );
+
     if (!values.email) {
       errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+    } else if (!regexEmail.test(values.email)) {
       errors.email = "Invalid email address";
     }
+
+    if (!values.tel) {
+      errors.tel = "Required";
+    } else if (!regexTel.test(values.tel)) {
+      errors.tel = "Invalid phone";
+    }
+
     return errors;
   };
 

@@ -7,8 +7,8 @@ import {
   setProductToCartAC,
   setAddProductToCart,
   setAlreadyInCartAC,
-} from "./redux/cardProductReducer";
-import { initializeApp } from "./redux/appReducer";
+} from "./store/cardProductReducer";
+import { initializeApp } from "./store/appReducer";
 
 import HeaderContainer from "./components/containers/HeaderContainer/HeaderContainer";
 import CardProductContainer from "./components/containers/CardProductContainer/CardProductContainer";
@@ -18,7 +18,7 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 import NotExistPage from "./pages/NotExistPage/NotExistPage";
 
 import "./App.css";
-import "./null.sass";
+import "./reset.sass";
 
 const App = (props) => {
   // Get data on page load
@@ -26,33 +26,26 @@ const App = (props) => {
 
   // Validation of adding items to cart
   const addCartGoodsValidation = (card) => {
-    if (!props.cart.length) {
+    const isAlreadyCart = props.cart.some((item) => {
+      return card.id === item.id;
+    });
+
+    if (isAlreadyCart) {
+      if (!card.selectSize) {
+        return;
+      } else {
+        props.setAlreadyInCartAC(true);
+        // To add a temporary notification
+        setTimeout(() => {
+          props.setAlreadyInCartAC(false);
+        }, 2700);
+      }
+    } else {
       props.setProductToCartAC(card);
       props.setAddProductToCart(true);
       setTimeout(() => {
         props.setAddProductToCart(false);
       }, 1000);
-    } else {
-      const result = props.cart.some((item) => {
-        return card.id === item.id;
-      });
-      if (result) {
-        if (!card.selectSize) {
-          return;
-        } else {
-          props.setAlreadyInCartAC(true);
-          // To add a temporary notification
-          setTimeout(() => {
-            props.setAlreadyInCartAC(false);
-          }, 2700);
-        }
-      } else {
-        props.setProductToCartAC(card);
-        props.setAddProductToCart(true);
-        setTimeout(() => {
-          props.setAddProductToCart(false);
-        }, 1000);
-      }
     }
   };
 

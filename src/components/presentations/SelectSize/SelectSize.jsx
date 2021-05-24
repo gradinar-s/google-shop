@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { getCoordinateElement } from "../../../helpers/functions/common";
-import { setCoordinateElement } from "../../../redux/appReducer";
-import { setSelectSize } from "../../../redux/cardProductReducer";
+import { setCoordinateElement } from "../../../store/appReducer";
+import { setSelectSize } from "../../../store/cardProductReducer";
 
 import Notification from "../Notification/Notification";
 

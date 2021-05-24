@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { closeCart, openWindowCheckout } from "../../../redux/appReducer";
+import { closeCart, openWindowCheckout } from "../../../store/appReducer";
 import {
   incrementGoodsAC,
   decrementGoodsAC,
   removeFromCartAC,
-} from "../../../redux/cardProductReducer";
+} from "../../../store/cardProductReducer";
 
 import ProductInCart from "../../presentations/ProductInCart/ProductInCart";
 

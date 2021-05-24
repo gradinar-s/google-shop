@@ -6,11 +6,11 @@ import {
   setProductToCartAC,
   setAlreadyInCartAC,
   setAddProductToCart,
-} from "../../../redux/cardProductReducer";
+} from "../../../store/cardProductReducer";
 import {
   openWindowCheckout,
   setCoordinateElement,
-} from "../../../redux/appReducer";
+} from "../../../store/appReducer";
 import {
   createAnimationElement,
   setCoordinatesKeyframes,

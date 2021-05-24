@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import store from "./redux/store";
+import store from "./store/store";
 
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";

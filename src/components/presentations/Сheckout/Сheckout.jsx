@@ -34,7 +34,7 @@ const Checkout = ({
               <Field type="email" name="email" placeholder="Email" />
               <ErrorMessage name="email" className="error" component="div" />
               <Field type="tel" name="tel" placeholder="Phone" />
-              <ErrorMessage name="tel" component="div" />
+              <ErrorMessage name="tel" className="error" component="div" />
               <button
                 className={`buttonPrimary ${style.btnSubmitForm}`}
                 type="submit"

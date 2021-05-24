@@ -12,14 +12,14 @@ import Cost from "../../components/presentations/Cost/Cost";
 import {
   openWindowCheckout,
   setCoordinateElement,
-} from "../../redux/appReducer";
+} from "../../store/appReducer";
 import {
   getProductCardDataTC,
   setProductToCartAC,
   setAlreadyInCartAC,
   setAddProductToCart,
   setSelectSize,
-} from "../../redux/cardProductReducer";
+} from "../../store/cardProductReducer";
 import {
   createAnimationElement,
   getCoordinateElement,
