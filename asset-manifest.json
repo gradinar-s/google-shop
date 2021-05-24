@@ -1,29 +1,27 @@
 {
   "files": {
-    "main.css": "/google-shop/static/css/main.d0eeca58.chunk.css",
-    "main.js": "/google-shop/static/js/main.09d1a409.chunk.js",
-    "main.js.map": "/google-shop/static/js/main.09d1a409.chunk.js.map",
-    "runtime-main.js": "/google-shop/static/js/runtime-main.8c708be6.js",
-    "runtime-main.js.map": "/google-shop/static/js/runtime-main.8c708be6.js.map",
-    "static/js/2.81990c9c.chunk.js": "/google-shop/static/js/2.81990c9c.chunk.js",
-    "static/js/2.81990c9c.chunk.js.map": "/google-shop/static/js/2.81990c9c.chunk.js.map",
-    "static/js/3.161d68d7.chunk.js": "/google-shop/static/js/3.161d68d7.chunk.js",
-    "static/js/3.161d68d7.chunk.js.map": "/google-shop/static/js/3.161d68d7.chunk.js.map",
+    "main.css": "/google-shop/static/css/main.d625cb55.chunk.css",
+    "main.js": "/google-shop/static/js/main.134977d6.chunk.js",
+    "main.js.map": "/google-shop/static/js/main.134977d6.chunk.js.map",
+    "runtime-main.js": "/google-shop/static/js/runtime-main.8e2acbae.js",
+    "runtime-main.js.map": "/google-shop/static/js/runtime-main.8e2acbae.js.map",
+    "static/js/2.625fc325.chunk.js": "/google-shop/static/js/2.625fc325.chunk.js",
+    "static/js/2.625fc325.chunk.js.map": "/google-shop/static/js/2.625fc325.chunk.js.map",
     "index.html": "/google-shop/index.html",
-    "static/css/main.d0eeca58.chunk.css.map": "/google-shop/static/css/main.d0eeca58.chunk.css.map",
-    "static/js/2.81990c9c.chunk.js.LICENSE.txt": "/google-shop/static/js/2.81990c9c.chunk.js.LICENSE.txt",
+    "static/css/main.d625cb55.chunk.css.map": "/google-shop/static/css/main.d625cb55.chunk.css.map",
+    "static/js/2.625fc325.chunk.js.LICENSE.txt": "/google-shop/static/js/2.625fc325.chunk.js.LICENSE.txt",
     "static/media/Cart.module.css": "/google-shop/static/media/back.d8f688ff.svg",
     "static/media/CardProduct.module.css": "/google-shop/static/media/cart.ddc068c2.svg",
-    "static/media/ProductPage.module.scss": "/google-shop/static/media/remove.5ea302e1.svg",
+    "static/media/Availability.module.scss": "/google-shop/static/media/remove.5ea302e1.svg",
     "static/media/ProductInCart.module.css": "/google-shop/static/media/delete.e23797be.svg",
     "static/media/loading.48060ccb.svg": "/google-shop/static/media/loading.48060ccb.svg",
     "static/media/oops.c91bc272.svg": "/google-shop/static/media/oops.c91bc272.svg",
     "static/media/user.8d4a8fbb.svg": "/google-shop/static/media/user.8d4a8fbb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8c708be6.js",
-    "static/js/2.81990c9c.chunk.js",
-    "static/css/main.d0eeca58.chunk.css",
-    "static/js/main.09d1a409.chunk.js"
+    "static/js/runtime-main.8e2acbae.js",
+    "static/js/2.625fc325.chunk.js",
+    "static/css/main.d625cb55.chunk.css",
+    "static/js/main.134977d6.chunk.js"
   ]
 }
