@@ -2,19 +2,17 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import Cart from "../Cart/Cart";
-import Icon from "../Icon/Icon";
 import Notification from "../Notification/Notification";
 
 import cartIcon from "../../../img/icon/cart.svg";
-import userIcon from "../../../img/icon/user.svg";
 
 import style from "./Header.module.css";
 
 const Header = ({
   cart,
+  openCart,
   closePopup,
   cartElement,
-  openCart,
   isAlreadyInCart,
   addCartGoodsValidation,
 }) => {
@@ -41,7 +39,6 @@ const Header = ({
             <img src={cartIcon} alt="" />
             <span className={style.quan}>{cart.length}</span>
           </div>
-          <Icon className={style.userAuthIcon} src={userIcon} />
         </div>
         <Cart
           cart={cart}

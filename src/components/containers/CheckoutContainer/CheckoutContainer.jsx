@@ -2,6 +2,11 @@ import React from "react";
 
 import { connect } from "react-redux";
 import {
+  validEmail,
+  validName,
+  validTel,
+} from "../../../helpers/functions/validate";
+import {
   closeWindowCheckout,
   setWindowClosingProcess,
   sendMessageTelegramBot,
@@ -22,32 +27,12 @@ const CheckoutContainer = (props) => {
     }, ANIMATION_TIME);
   };
 
-  const orderFormValidation = (values) => {
-    const errors = {};
+  const orderFormValidate = (values) => {
+    const name = validName(values.name);
+    const email = validEmail(values.email);
+    const tel = validTel(values.tel);
 
-    const regexEmail = new RegExp(
-      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/,
-      "i"
-    );
-
-    const regexTel = new RegExp(
-      /^((8|\+[0-9])[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
-      "i"
-    );
-
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (!regexEmail.test(values.email)) {
-      errors.email = "Invalid email address";
-    }
-
-    if (!values.tel) {
-      errors.tel = "Required";
-    } else if (!regexTel.test(values.tel)) {
-      errors.tel = "Invalid phone";
-    }
-
-    return errors;
+    return { ...email, ...tel, ...name };
   };
 
   const onSubmitOrderForm = (data) => {
@@ -57,7 +42,7 @@ const CheckoutContainer = (props) => {
   return (
     <Checkout
       onSubmitOrderForm={onSubmitOrderForm}
-      orderFormValidation={orderFormValidation}
+      orderFormValidate={orderFormValidate}
       closePopup={closePopup}
       isOpenCheckout={props.isOpenCheckout}
       isMessageSentSuccess={props.isMessageSentSuccess}

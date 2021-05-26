@@ -12,7 +12,7 @@ import Header from "../../presentations/Header/Header";
 
 const HeaderContainer = (props) => {
   // Close modal window
-  const closePopup = () => {
+  const closePopup = (closeElement) => {
     const ANIMATION_TIME = 210;
     props.setWindowClosingProcess(true);
     setTimeout(() => {
@@ -35,8 +35,8 @@ const HeaderContainer = (props) => {
     <Header
       cart={props.cart}
       cartElement={cartElement}
-      closePopup={closePopup}
       openCart={props.openCart}
+      closePopup={closePopup}
       isAlreadyInCart={props.isAlreadyInCart}
       addCartGoodsValidation={props.addCartGoodsValidation}
     />
@@ -52,8 +52,9 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  openCart,
-  closeCart,
   setWindowClosingProcess,
   setCoordinatesIconCart,
+  // modal window cart
+  openCart,
+  closeCart,
 })(HeaderContainer);

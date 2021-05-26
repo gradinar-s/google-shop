@@ -12,7 +12,7 @@ const Checkout = ({
   isOpenCheckout,
   isMessageSentSuccess,
   closePopup,
-  orderFormValidation,
+  orderFormValidate,
   onSubmitOrderForm,
 }) => {
   return (
@@ -25,12 +25,13 @@ const Checkout = ({
       {!isMessageSentSuccess && (
         <Formik
           initialValues={{ name: "", email: "", tel: "" }}
-          validate={orderFormValidation}
+          validate={orderFormValidate}
           onSubmit={onSubmitOrderForm}
         >
           {({ isSubmitting }) => (
             <Form className={style.formCheckout}>
               <Field type="text" name="name" placeholder="Name" />
+              <ErrorMessage name="name" className="error" component="div" />
               <Field type="email" name="email" placeholder="Email" />
               <ErrorMessage name="email" className="error" component="div" />
               <Field type="tel" name="tel" placeholder="Phone" />
