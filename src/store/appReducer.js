@@ -1,4 +1,6 @@
 import { telegramBotAPI } from "../api/api";
+import { readCookie } from "../helpers/functions/common";
+import { setAuthManager } from "./authReducer";
 import { getProductCardDataTC } from "./cardProductReducer";
 
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
@@ -105,6 +107,14 @@ export const setMessageSendStatus = (status) => ({
 // initialization of the application
 export const initializeApp = () => async (dispatch) => {
   const initialized = dispatch(getProductCardDataTC());
+
+  // If a cookie exists "rememberManager" install an authorized manager
+  const rememberManager = readCookie("rememberManager");
+  if (rememberManager) {
+    dispatch(setAuthManager());
+  }
+
+  // After all promises are executed, initialization is successful
   await Promise.all([initialized]);
   dispatch(initializedSuccess());
 };

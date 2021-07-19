@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validEmail, validPassword } from "../../../helpers/functions/validate";
+import { readCookie } from "../../../helpers/functions/common";
 
 import Notification from "../Notification/Notification";
 import ModalWindow from "../ModalWindow/ModalWindow";
-
-import sHeader from "../Header/Header.module.sass";
-import style from "./AuthDropdownMenu.module.sass";
 import {
   authManagerTC,
   setMultipleLoginAttempts,
 } from "../../../store/authReducer";
-import { readCookie } from "../../../helpers/functions/common";
+
+import sHeader from "../Header/Header.module.sass";
+import style from "./AuthDropdownMenu.module.sass";
 
 const AuthDropdownMenu = ({
   isOpenAuth,
@@ -24,6 +24,8 @@ const AuthDropdownMenu = ({
   setMultipleLoginAttempts,
   multipleLoginAttempts,
 }) => {
+  const [isRememberManager, setRememberManager] = useState(false);
+
   useEffect(() => {
     // Check multipleLoginAttempts cookie
     if (readCookie("multipleLoginAttempts")) {
@@ -41,7 +43,7 @@ const AuthDropdownMenu = ({
 
   // On submit form
   const onSubmitForm = (data) => {
-    authManagerTC(data.email, data.password);
+    authManagerTC(data.email, data.password, isRememberManager);
   };
 
   return (
@@ -80,6 +82,14 @@ const AuthDropdownMenu = ({
               <Field type="password" name="password" placeholder="Password" />
               <ErrorMessage name="password" className="error" component="div" />
               <div className="error">{errorAuth}</div>
+              <label
+                htmlFor="rememberMe"
+                className={style.authForm__rememberMe}
+                onChange={(e) => setRememberManager(e.target.checked)}
+              >
+                Remember me
+                <input type="checkbox" id="rememberMe" />
+              </label>
               <button
                 type="submit"
                 className={`buttonPrimary ${style.authForm__submitButton}`}
