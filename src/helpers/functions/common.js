@@ -40,3 +40,28 @@ export const setLocalStorageData = (name, data) => {
   localStorage.setItem(name, JSON.stringify(data));
 };
 // ===========================================
+// Cookie settings
+
+export const createCookie = (key, value, days = 365) => {
+  let date = new Date();
+
+  // Get unix milliseconds at current time plus number of days
+  date.setTime(+date + days * 86400000); // 24 * 60 * 60 * 1000
+
+  window.document.cookie = `${key}=${value}; expires=${date.toGMTString()}; path=/`;
+
+  return value;
+};
+
+export const readCookie = (cookieName) => {
+  let pairKeyValue = {};
+
+  document.cookie.split("; ").forEach((cookie) => {
+    let result = cookie.split("=");
+    pairKeyValue[result[0]] = result[1];
+  });
+
+  return pairKeyValue[cookieName];
+};
+
+// ===========================================

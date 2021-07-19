@@ -9,6 +9,9 @@ const CLOSE_MDW_CART = "app/CLOSE_MDW_CART";
 // modal window place order
 const OPEN_MDW_CHECKOUT = "app/OPEN_MDW_CHECKOUT";
 const CLOSE_MDW_CHECKOUT = "app/CLOSE_MDW_CHECKOUT";
+// modal window auth
+const OPEN_MDW_AUTH = "app/OPEN_MDW_AUTH";
+const CLOSE_MDW_AUTH = "app/CLOSE_MDW_AUTH";
 // window closing process
 const SET_WINDOW_CLOSING_PROCESS = "app/SET_WINDOW_CLOSING_PROCESS";
 // coordinates
@@ -23,6 +26,8 @@ const initialState = {
   isOpenCart: false,
   // modal window place order
   isOpenCheckout: false,
+  // modal window auth
+  isOpenAuth: false,
   // To animate when the modal window is closed
   windowClosingProcess: false,
   // coordinates
@@ -46,6 +51,11 @@ export const appReducer = (state = initialState, action) => {
       return { ...state, isOpenCheckout: true };
     case CLOSE_MDW_CHECKOUT:
       return { ...state, isOpenCheckout: false };
+    // modal window auth
+    case OPEN_MDW_AUTH:
+      return { ...state, isOpenAuth: true };
+    case CLOSE_MDW_AUTH:
+      return { ...state, isOpenAuth: false };
     // window closing process
     case SET_WINDOW_CLOSING_PROCESS:
       return { ...state, windowClosingProcess: action.value };
@@ -69,6 +79,9 @@ export const closeCart = () => ({ type: CLOSE_MDW_CART });
 // modal window place order
 export const openWindowCheckout = () => ({ type: OPEN_MDW_CHECKOUT });
 export const closeWindowCheckout = () => ({ type: CLOSE_MDW_CHECKOUT });
+// modal window auth
+export const openWindowAuth = () => ({ type: OPEN_MDW_AUTH });
+export const closeWindowAuth = () => ({ type: CLOSE_MDW_AUTH });
 // window closing process (for animation)
 export const setWindowClosingProcess = (value) => ({
   type: SET_WINDOW_CLOSING_PROCESS,
