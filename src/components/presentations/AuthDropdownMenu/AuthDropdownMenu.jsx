@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validEmail, validPassword } from "../../../helpers/functions/validate";
@@ -7,10 +6,6 @@ import { readCookie } from "../../../helpers/functions/common";
 
 import Notification from "../Notification/Notification";
 import ModalWindow from "../ModalWindow/ModalWindow";
-import {
-  authManagerTC,
-  setMultipleLoginAttempts,
-} from "../../../store/authReducer";
 
 import sHeader from "../Header/Header.module.sass";
 import style from "./AuthDropdownMenu.module.sass";
@@ -19,6 +14,7 @@ const AuthDropdownMenu = ({
   isOpenAuth,
   openWindowAuth,
   closeWindowAuth,
+  smoothlyCloseModalWindow,
   authManagerTC,
   errorAuth,
   setMultipleLoginAttempts,
@@ -68,7 +64,7 @@ const AuthDropdownMenu = ({
         title="Manager authorization"
         width="500px"
         isOpen={isOpenAuth}
-        isClosed={closeWindowAuth}
+        isClosed={() => smoothlyCloseModalWindow(closeWindowAuth)}
       >
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -105,13 +101,4 @@ const AuthDropdownMenu = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    errorAuth: state.auth.error,
-    multipleLoginAttempts: state.auth.multipleLoginAttempts,
-  };
-};
-export default connect(mapStateToProps, {
-  authManagerTC,
-  setMultipleLoginAttempts,
-})(AuthDropdownMenu);
+export default AuthDropdownMenu;

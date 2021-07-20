@@ -14,7 +14,8 @@ import style from "./Header.module.sass";
 const Header = ({
   cart,
   openCart,
-  closePopup,
+  closeCart,
+  smoothlyCloseModalWindow,
   cartElement,
   isAlreadyInCart,
   addCartGoodsValidation,
@@ -47,8 +48,8 @@ const Header = ({
             </div>
             <Cart
               cart={cart}
-              closePopup={closePopup}
               addCartGoodsValidation={addCartGoodsValidation}
+              closePopup={() => smoothlyCloseModalWindow(closeCart)}
             />
           </div>
           <div className={style.headerNav__element}>

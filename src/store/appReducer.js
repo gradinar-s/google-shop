@@ -104,6 +104,24 @@ export const setMessageSendStatus = (status) => ({
   status,
 });
 
+// Smoothly closing a modal window
+export const smoothlyCloseModalWindow =
+  (closeAction, ...otherActions) =>
+  async (dispatch) => {
+    const ANIMATION_TIME = 210;
+    dispatch(setWindowClosingProcess(true));
+    setTimeout(() => {
+      dispatch(closeAction());
+      dispatch(setWindowClosingProcess(false));
+      // Additional actions are performed here if they were specified
+      if (otherActions.length) {
+        otherActions.forEach((action) => {
+          dispatch(action());
+        });
+      }
+    }, ANIMATION_TIME);
+  };
+
 // initialization of the application
 export const initializeApp = () => async (dispatch) => {
   const initialized = dispatch(getProductCardDataTC());

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+
 // ===========================================
 export const getCoordinateElement = (e) => {
   const coordinates = e.target.getBoundingClientRect();
@@ -34,14 +35,15 @@ export const createAnimationElement = (top, left, animName) => {
   `;
   return EffectAddingItemCart;
 };
+
 // ===========================================
 // Set localstorage data
 export const setLocalStorageData = (name, data) => {
   localStorage.setItem(name, JSON.stringify(data));
 };
+
 // ===========================================
 // Cookie settings
-
 export const createCookie = (key, value, days = 365) => {
   let date = new Date();
 

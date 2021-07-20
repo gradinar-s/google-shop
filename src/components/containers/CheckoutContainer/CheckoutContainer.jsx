@@ -11,22 +11,13 @@ import {
   setWindowClosingProcess,
   sendMessageTelegramBot,
   setMessageSendStatus,
+  smoothlyCloseModalWindow,
 } from "../../../store/appReducer";
 
 import Checkout from "../../presentations/Сheckout/Сheckout";
 
 const CheckoutContainer = (props) => {
-  // Popup
-  const closePopup = () => {
-    const ANIMATION_TIME = 210;
-    props.setWindowClosingProcess(true);
-    setTimeout(() => {
-      props.closeWindowCheckout();
-      props.setWindowClosingProcess(false);
-      props.setMessageSendStatus(false); // Hide successful order notification
-    }, ANIMATION_TIME);
-  };
-
+  // Form field validation (Returns an object with errors)
   const orderFormValidate = (values) => {
     const name = validName(values.name);
     const email = validEmail(values.email);
@@ -43,7 +34,9 @@ const CheckoutContainer = (props) => {
     <Checkout
       onSubmitOrderForm={onSubmitOrderForm}
       orderFormValidate={orderFormValidate}
-      closePopup={closePopup}
+      closeWindowCheckout={props.closeWindowCheckout}
+      smoothlyCloseModalWindow={props.smoothlyCloseModalWindow}
+      setMessageSendStatus={props.setMessageSendStatus}
       isOpenCheckout={props.isOpenCheckout}
       isMessageSentSuccess={props.isMessageSentSuccess}
     />
@@ -58,6 +51,7 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   closeWindowCheckout,
+  smoothlyCloseModalWindow,
   setWindowClosingProcess,
   sendMessageTelegramBot,
   setMessageSendStatus,

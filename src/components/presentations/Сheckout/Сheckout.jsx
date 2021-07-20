@@ -11,7 +11,9 @@ import style from "./Checkout.module.css";
 const Checkout = ({
   isOpenCheckout,
   isMessageSentSuccess,
-  closePopup,
+  closeWindowCheckout,
+  smoothlyCloseModalWindow,
+  setMessageSendStatus,
   orderFormValidate,
   onSubmitOrderForm,
 }) => {
@@ -20,7 +22,11 @@ const Checkout = ({
       width="450px"
       title="Buy in one click"
       isOpen={isOpenCheckout}
-      isClosed={closePopup}
+      isClosed={() =>
+        smoothlyCloseModalWindow(closeWindowCheckout, () =>
+          setMessageSendStatus(false)
+        )
+      }
     >
       {!isMessageSentSuccess && (
         <Formik
