@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+
 // ===========================================
 export const getCoordinateElement = (e) => {
   const coordinates = e.target.getBoundingClientRect();
@@ -34,9 +35,15 @@ export const createAnimationElement = (top, left, animName) => {
   `;
   return EffectAddingItemCart;
 };
+
 // ===========================================
 // Set localstorage data
 export const setLocalStorageData = (name, data) => {
   localStorage.setItem(name, JSON.stringify(data));
 };
+
 // ===========================================
+// Text
+export const capitalizeFirstLetter = (string) => {
+  return string[0].toUpperCase() + string.substring(1);
+};

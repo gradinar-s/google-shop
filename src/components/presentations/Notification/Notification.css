@@ -12,7 +12,7 @@
   border: 1px solid #cc4a16;
   border-radius: 3px;
 }
-.notification .arrow {
+.notification-wrapper .arrow {
   position: absolute;
   width: 10px;
   height: 10px;
@@ -21,12 +21,14 @@
   border-width: 0 1px 1px 0;
 }
 
+/* Direction */
 .notification .arrow.top {
   top: -5.8px;
   left: 7px;
   transform: rotate(225deg);
   -webkit-transform: rotate(225deg);
 }
+
 .notification .arrow.bottom {
   bottom: -5px;
   left: 50%;
@@ -34,6 +36,7 @@
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+
 .notification .arrow.left {
   top: 50%;
   margin-top: -5px;

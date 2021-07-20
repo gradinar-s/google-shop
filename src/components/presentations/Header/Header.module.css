@@ -65,7 +65,6 @@
 }
 /* Notifatication ================================================ */
 .alreadyNotification {
-  margin-right: 15px;
   animation: viewNotification 2.8s forwards;
   z-index: 0;
 }
