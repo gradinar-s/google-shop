@@ -1,3 +1,6 @@
+// *Each function returns an object with an error test
+
+// --- Email field validation ---
 export function validEmail(email) {
   const errors = {};
 
@@ -12,6 +15,7 @@ export function validEmail(email) {
   return errors;
 }
 
+// --- Phone field validation ---
 export function validTel(tel) {
   const errors = {};
 
@@ -29,6 +33,7 @@ export function validTel(tel) {
   return errors;
 }
 
+// --- Name field validation ---
 export function validName(name) {
   const errors = {};
   if (!name) {
@@ -37,6 +42,7 @@ export function validName(name) {
   return errors;
 }
 
+// --- Password field validation ---
 export function validPassword(password) {
   const errors = {};
   if (password.length < 5) {

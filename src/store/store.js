@@ -1,6 +1,6 @@
 import thunk from "redux-thunk";
 import { applyMiddleware, combineReducers, createStore } from "redux";
-// Reducers ================================================
+
 import { cardProductReducer } from "./cardProductReducer";
 import { appReducer } from "./appReducer";
 import { composeWithDevTools } from "redux-devtools-extension";

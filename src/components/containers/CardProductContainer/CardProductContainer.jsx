@@ -25,6 +25,7 @@ const CardProductContainer = (props) => {
     props.coordinatesIconCart.left
   );
 
+  // The item that moves from the clicked location to the trash can
   const EffectAddingItemCart = createAnimationElement(
     props.coordinateElement.top,
     props.coordinateElement.left,

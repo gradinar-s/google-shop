@@ -46,7 +46,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   setWindowClosingProcess,
   setCoordinatesIconCart,
-  // modal window cart
   openCart,
   closeCart,
   smoothlyCloseModalWindow,

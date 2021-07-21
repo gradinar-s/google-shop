@@ -1,0 +1,39 @@
+.availability
+  display: inline-block
+  margin: 0px 0px 20px 0px
+  position: relative
+  // --- In stock ---
+  .areAvailable
+    background-color: #f4faf6
+    color: #00a046
+    padding: 10px 10px 10px 33px
+    &::before
+      content: url("../../../img/icon/checkMark.svg")
+      position: absolute
+      top: 0
+      margin-top: -7px
+      left: 4px
+      height: 25px
+      width: 25px
+  // --- Few items left ---
+  .last
+    background-color: #fff7f2
+    color: #ff5c00
+    padding: 10px 10px 10px 37px
+    &::before
+      content: url("../../../img/icon/clock.svg")
+      position: absolute
+      top: 0
+      margin-top: -7px
+      left: 4px
+  // --- The product is out of stock ---
+  .notAvailable
+    background-color: #f5f5f5
+    color: #797878
+    padding: 10px 10px 10px 30px
+    &::before
+      content: url("../../../img/icon/remove.svg")
+      position: absolute
+      top: 0
+      margin-top: -3px
+      left: 4px

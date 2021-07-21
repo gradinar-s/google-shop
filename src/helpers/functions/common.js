@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
-// ===========================================
+// Working with animations ===============================================
+// --- Get coordinates element on page ---
 export const getCoordinateElement = (e) => {
   const coordinates = e.target.getBoundingClientRect();
   const top = coordinates.top + window.pageYOffset;
@@ -8,7 +9,7 @@ export const getCoordinateElement = (e) => {
   return { top, left };
 };
 
-// Animation of adding a product to the cart
+// --- Animation of adding a product to the cart ---
 export const setCoordinatesKeyframes = (top, left) => {
   const animationAddingItemCart = keyframes`
   60% { 
@@ -22,6 +23,7 @@ export const setCoordinatesKeyframes = (top, left) => {
   return animationAddingItemCart;
 };
 
+// --- Create animation element ---
 export const createAnimationElement = (top, left, animName) => {
   const EffectAddingItemCart = styled.span`
     position: absolute;
@@ -36,14 +38,14 @@ export const createAnimationElement = (top, left, animName) => {
   return EffectAddingItemCart;
 };
 
-// ===========================================
-// Set localstorage data
+// Localstorage data =====================================================
+// --- Set localstorage data ---
 export const setLocalStorageData = (name, data) => {
   localStorage.setItem(name, JSON.stringify(data));
 };
 
-// ===========================================
-// Cookie settings
+// Cookie settings =======================================================
+// --- Create cookie ---
 export const createCookie = (key, value, days = 365) => {
   let date = new Date();
 
@@ -55,6 +57,7 @@ export const createCookie = (key, value, days = 365) => {
   return value;
 };
 
+// --- Read cookie ---
 export const readCookie = (cookieName) => {
   let pairKeyValue = {};
 
@@ -66,8 +69,8 @@ export const readCookie = (cookieName) => {
   return pairKeyValue[cookieName];
 };
 
-// ===========================================
-// Text
+// Working with string values ============================================
+// --- Increase the first letter in a line ---
 export const capitalizeFirstLetter = (string) => {
   return string[0].toUpperCase() + string.substring(1);
 };

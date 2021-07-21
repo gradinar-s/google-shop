@@ -1,6 +1,6 @@
 import React from "react";
 
-import style from "./Availability.module.scss";
+import style from "./Availability.module.sass";
 
 const Availability = ({ quantity }) => {
   return (
