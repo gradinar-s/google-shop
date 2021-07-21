@@ -1,4 +1,8 @@
-import { instanceSheets, instanceTelegramBot } from "./instances";
+import {
+  instanceFirebase,
+  instanceSheets,
+  instanceTelegramBot,
+} from "./instances";
 
 // API google sheets
 export const sheetsAPI = {
@@ -33,5 +37,20 @@ export const telegramBotAPI = {
         )
         .then((response) => response.data);
     }
+  },
+};
+
+// API firebase auth marager
+export const firebaseAuthAPI = {
+  authManager(email, password) {
+    const apiKey = "AIzaSyCQFmGuGH3BwNBocQvDPvrDhIAthNlWmx8";
+
+    return instanceFirebase
+      .post(`accounts:signInWithPassword?key=${apiKey}`, {
+        email,
+        password,
+        returnSecureToken: "true",
+      })
+      .then((response) => response.data);
   },
 };

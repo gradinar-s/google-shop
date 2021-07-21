@@ -1,4 +1,6 @@
 import { telegramBotAPI } from "../api/api";
+import { readCookie } from "../helpers/functions/common";
+import { setAuthManager } from "./authReducer";
 import { getProductCardDataTC } from "./cardProductReducer";
 
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
@@ -9,6 +11,9 @@ const CLOSE_MDW_CART = "app/CLOSE_MDW_CART";
 // modal window place order
 const OPEN_MDW_CHECKOUT = "app/OPEN_MDW_CHECKOUT";
 const CLOSE_MDW_CHECKOUT = "app/CLOSE_MDW_CHECKOUT";
+// modal window auth
+const OPEN_MDW_AUTH = "app/OPEN_MDW_AUTH";
+const CLOSE_MDW_AUTH = "app/CLOSE_MDW_AUTH";
 // window closing process
 const SET_WINDOW_CLOSING_PROCESS = "app/SET_WINDOW_CLOSING_PROCESS";
 // coordinates
@@ -23,6 +28,8 @@ const initialState = {
   isOpenCart: false,
   // modal window place order
   isOpenCheckout: false,
+  // modal window auth
+  isOpenAuth: false,
   // To animate when the modal window is closed
   windowClosingProcess: false,
   // coordinates
@@ -46,6 +53,11 @@ export const appReducer = (state = initialState, action) => {
       return { ...state, isOpenCheckout: true };
     case CLOSE_MDW_CHECKOUT:
       return { ...state, isOpenCheckout: false };
+    // modal window auth
+    case OPEN_MDW_AUTH:
+      return { ...state, isOpenAuth: true };
+    case CLOSE_MDW_AUTH:
+      return { ...state, isOpenAuth: false };
     // window closing process
     case SET_WINDOW_CLOSING_PROCESS:
       return { ...state, windowClosingProcess: action.value };
@@ -69,6 +81,9 @@ export const closeCart = () => ({ type: CLOSE_MDW_CART });
 // modal window place order
 export const openWindowCheckout = () => ({ type: OPEN_MDW_CHECKOUT });
 export const closeWindowCheckout = () => ({ type: CLOSE_MDW_CHECKOUT });
+// modal window auth
+export const openWindowAuth = () => ({ type: OPEN_MDW_AUTH });
+export const closeWindowAuth = () => ({ type: CLOSE_MDW_AUTH });
 // window closing process (for animation)
 export const setWindowClosingProcess = (value) => ({
   type: SET_WINDOW_CLOSING_PROCESS,
@@ -89,9 +104,35 @@ export const setMessageSendStatus = (status) => ({
   status,
 });
 
+// Smoothly closing a modal window
+export const smoothlyCloseModalWindow =
+  (closeAction, ...otherActions) =>
+  async (dispatch) => {
+    const ANIMATION_TIME = 210;
+    dispatch(setWindowClosingProcess(true));
+    setTimeout(() => {
+      dispatch(closeAction());
+      dispatch(setWindowClosingProcess(false));
+      // Additional actions are performed here if they were specified
+      if (otherActions.length) {
+        otherActions.forEach((action) => {
+          dispatch(action());
+        });
+      }
+    }, ANIMATION_TIME);
+  };
+
 // initialization of the application
 export const initializeApp = () => async (dispatch) => {
   const initialized = dispatch(getProductCardDataTC());
+
+  // If a cookie exists "rememberManager" install an authorized manager
+  const rememberManager = readCookie("rememberManager");
+  if (rememberManager) {
+    dispatch(setAuthManager());
+  }
+
+  // After all promises are executed, initialization is successful
   await Promise.all([initialized]);
   dispatch(initializedSuccess());
 };

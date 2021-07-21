@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { getCoordinateElement } from "../../../helpers/functions/common";
@@ -9,6 +10,7 @@ import SelectSize from "../SelectSize/SelectSize";
 import Cost from "../Cost/Cost";
 
 import style from "./CardProduct.module.css";
+import AddNewProduct from "../AddNewProduct/AddNewProduct";
 
 const CardProduct = ({
   products,
@@ -18,8 +20,11 @@ const CardProduct = ({
   addCartGoodsValidation,
   setCoordinateElement,
 }) => {
+  const isAuthManager = useSelector((state) => state.auth.isAuthManager);
+
   return (
     <div className={style.cardProduct}>
+      {isAuthManager && <AddNewProduct />}
       <CheckoutContainer />
       {isAddProduct && (
         <Portal>

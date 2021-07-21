@@ -51,3 +51,11 @@
   transform: rotate(315deg);
   -webkit-transform: rotate(315deg);
 }
+
+/* Horizontal position of the top and bottom arrows */
+.notification .arrow.top-right {
+  top: -4.8px;
+  right: 10px;
+  transform: rotate(225deg);
+  -webkit-transform: rotate(225deg);
+}

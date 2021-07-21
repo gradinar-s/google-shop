@@ -9,3 +9,12 @@ export const instanceSheets = axios.create({
 export const instanceTelegramBot = axios.create({
   baseURL: "https://api.telegram.org/",
 });
+
+// Base instanse for firebase
+export const instanceFirebase = axios.create({
+  baseURL: "https://identitytoolkit.googleapis.com/v1/",
+});
+
+export const instanceDataBase = axios.create({
+  baseURL: "https://shop-847de-default-rtdb.firebaseio.com/",
+});

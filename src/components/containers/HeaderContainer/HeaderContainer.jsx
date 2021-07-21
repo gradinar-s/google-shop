@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import {
   openCart,
+  smoothlyCloseModalWindow,
   closeCart,
   setWindowClosingProcess,
   setCoordinatesIconCart,
@@ -11,16 +12,6 @@ import {
 import Header from "../../presentations/Header/Header";
 
 const HeaderContainer = (props) => {
-  // Close modal window
-  const closePopup = (closeElement) => {
-    const ANIMATION_TIME = 210;
-    props.setWindowClosingProcess(true);
-    setTimeout(() => {
-      props.closeCart();
-      props.setWindowClosingProcess(false);
-    }, ANIMATION_TIME);
-  };
-
   // Get cart coordinates
   const cartElement = useRef();
 
@@ -36,7 +27,8 @@ const HeaderContainer = (props) => {
       cart={props.cart}
       cartElement={cartElement}
       openCart={props.openCart}
-      closePopup={closePopup}
+      closeCart={props.closeCart}
+      smoothlyCloseModalWindow={props.smoothlyCloseModalWindow}
       isAlreadyInCart={props.isAlreadyInCart}
       addCartGoodsValidation={props.addCartGoodsValidation}
     />
@@ -57,4 +49,5 @@ export default connect(mapStateToProps, {
   // modal window cart
   openCart,
   closeCart,
+  smoothlyCloseModalWindow,
 })(HeaderContainer);
